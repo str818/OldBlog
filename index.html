@@ -1,19 +1,18 @@
 ---
 layout: default
-category: about
-title: Yong Yuan's homepage
-description: I am Yong Yuan, an Computer Vision Algorithm Engineer in Kwai. My research interests cover large-scale image retrieval, approximate nearest neighbor search, content-based video copy detection.
+category: about-zh
+language: cn
+title: 蒋迪的个人主页
+description: 学习测试中。。。
 ---
 
-<section class="about-me inner">
+<section  class="about-me inner">
   <h1>
-    <div class="book-me">
-      <a class="btn btn-lg" href="/cn/">Chinese</a>
-    </div>
-    <span class="hello">
-      <em>Play</em>
-      <small>life on hard mode.
-    </span>
+    <!--<div class="book-me">
+      <a class="btn btn-lg" href="/contact">联系我</a>
+      <a class="btn btn-lg" href="/">英文</a>
+    </div>-->
+    <span class="hello">脚踏实地，志存高远</span>
   </h1>
 
   <blockquote>
@@ -21,36 +20,32 @@ description: I am Yong Yuan, an Computer Vision Algorithm Engineer in Kwai. My r
     There is something inside, that they can't get to, that they can't touch. That's yours.
   </p>
   </blockquote>
-
   <p>
-    I am <a href="/"><span itemprop="name">Yong Yuan</span></a>, an Computer Vision Algorithm Engineer in <a href="https://www.kwai.com/">Kwai </a> (MeiTuan->KuaiShou). I completed my master's degree in <a href="http://english.ucas.ac.cn/Pages/default.aspx"><strong>University of Chinese Academy of Sciences</strong></a> on June 22, 2016 and bachelor's degree in Faculty of Science at <a href="http://www.xidian.edu.cn/">Xidian University</a> of science and technology of the electronics information on July 1，2013.
+    这是<a href="/"><span itemprop="name">蒋迪</span></a>的个人主页。
   </p>
-
   <p>
-    My research interests cover <strong>Content-based Image Retrieval</strong> (more than four years experience), <strong>Approximate Nearest Neighbor Search</strong>, <strong>Content-based Video Copy Detection</strong> and <strong>Video Classification</strong>.
+    研究兴趣集中于<strong>计算机图形学</strong>、<strong>计算机视觉</strong>和<strong>三维人脸重建</strong>。
   </p>
-
   <p>
-    I support open source (@<a href="https://github.com/willard-yuan">willard-yuan<i class="icon-github"></i>)</a>, love C++ and Python. In my free time, I dive into writing, translating English book about technology, reading <a href="https://github.com/willard-yuan">books</a> to enrich themselves.
+    一名正在努力往上爬的蚂蚁小白。
   </p>
-
 </section>
 
 <section class="inner">
-  <div class="post-recents-in-index">
-    <strong>Recent blog posts</strong>
-  </div>
-  <blockquote>
-    <ul>
-      {% for post in site.posts limit:3 %}
-      <li class="post-list-in-index">
-      <small class="post-list-date-in-index">{{ post.date | date_to_string }}</small><a  href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-      </li>
-      {% endfor %}
-    </ul>
-  </blockquote>
+<div class="post-recents-in-index">
+<strong>最近写作</strong>
+</div>
+<blockquote>
+<ul>
+    {% for post in site.posts limit:3 %}
+    <li class="post-list-in-index">
+    <small class="post-list-date-in-index">{{ post.date | date_to_string }}</small><a  href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+</blockquote>
   <p>
-    If you are interested in me, you can access to my English <a href="{{ site.url }}/YongYuan_resume.pdf"><strong>resume</strong></a> for more details.
+    <!--更多请查看我的<a href="{{ site.url }}/YongYuan_resume.pdf"><strong>简历</strong></a>。-->
   </p>
 </section>
 
