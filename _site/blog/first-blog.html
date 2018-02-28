@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="aexITLS38FdIRzwj25OVWxm87rpa9l-UV0URTyC9cTs" />
   <title>
-    <!--知行手记：闲花落地听无声
+    <!--计算着色器（Compute Shader）
     -->
   </title>
   <link rel="stylesheet" href="../css/site.css">
@@ -60,21 +60,24 @@
 <div class="inner">
 <div class = "post-header">
   <h1>
-    知行手记：闲花落地听无声
+    计算着色器（Compute Shader）
   </h1>
   <ul class="meta">
   	<i class="fa fa-calendar"></i>
-  	2009年12月18日
+  	2018年02月28日
   	<i class="space"></i>
   	<i class="fa fa-archive"></i>
-  	<a class="tag" href="http://localhost:5001/blog/categories.html#Life">Life</a>
+  	<a class="tag" href="http://localhost:5001/blog/categories.html#计算机图形学">计算机图形学</a>
   	<i class="space"></i>
   	<i class="fa fa-tags"></i>
   	
-  	    <a class="tag" href="http://localhost:5001/tag/#生活">生活</a>
+  	    <a class="tag" href="http://localhost:5001/tag/#Shader">Shader</a>
   	    <i class="space"></i>
   	
-  	<i class="space"></i> 字数:257
+  	    <a class="tag" href="http://localhost:5001/tag/#Unity">Unity</a>
+  	    <i class="space"></i>
+  	
+  	<i class="space"></i> 字数:543
   </ul>
 </div>
 </div>
@@ -86,17 +89,26 @@
               <div class="toc"></div>
               </div>
           </div>
-  	   <p>半年的光阴似乎在弹指间就成为昨日的往事，岁月穿梭，昨日当不复记忆，而今日的我却依然在这个异度的空间里，追逐这一个自己都不确信的梦想！</p>
+  	   <p>　　图形处理器（Graphics Processing Unit,简称GPU）每秒能够进行数以亿次的计算，目前其已成为一种性能十分惊人的器件。通常，GPU主要用来承担实时图形渲染中的海量数学运算，然而，其潜在的计算能力也可用于处理与图形无关的任务。 <br />
+　　CUDA与OpenCL早已能够基于GPU实现并行计算，而OpenGL与DirectX也分别于OpenGL4.3与DirectX11版本后能够通过计算着色器的方式基于GPU实现并行计算。从图中可以看到，计算着色器是独立与通常的渲染管线的。</p>
 
-<p>今天，真的好累！</p>
+<blockquote>
+  <p>CUDA：NVIDIA推出的通用并行计算架构，该架构能够使用GPU解决复杂的计算问题。  <br />
+OpenCL：针对异构系统进行并行编程的一个全新API，能够利用GPU进行并行计算。</p>
+</blockquote>
 
-<p>有时，我在想，生活是多么的不可思议。在这个异度世界，平行并非绝对，你永远也无法想象在一个交集相连的生活中那些在你看来都觉得不可能发生的事儿莫名其妙成为事实。譬如，那一年，当我怀着一颗怀才不遇的悲伤去上黄老师的前几堂课时，我依然清晰的记得我是对她多么的不屑一顾啊，后来，后来一却都“面目全非”了。现在回想昔日的情形，我并不为自己的幼稚（狂妄）感到可笑，因为它是我亲历中的一部分。</p>
+<p><img src="\images\posts\2018\0228\pipeline.png" alt="渲染管线" height="70%" width="70%" /></p>
 
-<p>生命不是一个荒谬的玩笑，我自始自终都认为这个世界是可以解释的。一片枯叶静静的落在我的手心，在沉思自中我突然想到了那些出现在我身边关心我爱护我的人的合理解释：上帝说，你太苦了，让我派那些天使陪你走过这一路吧！</p>
-
-<p>“回首向来萧瑟处，也无风雨也无晴”走过那一切，才发觉那一切真的没什么，今天所发生的一切不过是被变换了形式的昨天的复制品而已。</p>
-
-<p>并非想要深沉，只因习惯四十五度角仰望天空，看云卷云舒，听花开花落！！！</p>
+<h2 id="1-cpu与gpu">1. CPU与GPU</h2>
+<p>　　前面提到了计算着色器能够基于GPU实现并行计算，从而提升计算能力，那么GPU到底独特在哪呢？为什么又比CPU的计算速度还要快？  <br />
+　　理解CPU与GPU之间区别的一种简单方式是比较他们是如果处理任务的：</p>
+<ul>
+  <li><strong>CPU</strong> 由专为顺序串行处理而优化的几个核心组成，其需要很强的通用性来处理各种不同的数据类型，除此之外逻辑判断会引入大量的分支跳转和中断处理，使得CPU的内部结构异常复杂。</li>
+  <li><strong>GPU</strong> 拥有一个由数以千计的更小、更高效的核心（专为同时处理多重任务而设计）组成的大规模并行计算架构。
+<img src="\images\posts\2018\0228\compare.jpg" alt="CPU与GPU结构对比图" height="60%" width="60%" /> 
+　　其中，绿色是计算单元，橙红色是存储单元，橙黄色是控制单元。 <br />
+　　GPU采用了数量众多的计算单元和超长的流水线，但只有非常简单的逻辑控制并省去了Cache；而CPU不仅被Cache占据了大量空间，还有很复杂的控制逻辑和诸多优化电路，相比之下计算能力只是GPU很小的一部分。</li>
+</ul>
 
   	</div>
 	</div>
@@ -106,9 +118,13 @@
 <section class="inner">
 <ul class="pager">
     
+    <li class="previous">
+       <a href="/blog/asymmetry-problem-in-computer-vision.html">←机器视觉：Asymmetry Problem in Computer Vision</a>
+    </li>
+    
     
     <li class="next">
-    	<a href="/blog/life-is-still-beautiful.html">知行手记：生活依然很美丽→</a>
+    	<a href="/blog/markdown.html">MarkDown编写小技巧→</a>
     </li>
     
  </ul>
