@@ -7,6 +7,51 @@
     <atom:link href="http://localhost:5001/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Windows系统下安装Jekyll</title>
+        <description>&lt;p&gt;　　Jekyll是一个简单的博客形态的静态站点生成机器，我们能通过Jekyll方便的搭建并维护一个博客。     &lt;br /&gt;
+　　除此之外，Jekyll也可以运行在GitHub Page上，也就是说，你可以使用GitHub的服务来搭建你的项目页面、博客或者网站，而且是完全免费的。&lt;/p&gt;
+
+&lt;p&gt;　　下面来看一下如何在Windows系统下正确安装Jekyll：&lt;/p&gt;
+
+&lt;h3 id=&quot;1安装ruby&quot;&gt;1.安装Ruby&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://rubyinstaller.org/downloads/&quot;&gt;下载链接&lt;/a&gt;    &lt;br /&gt;
+版本的差异可能会出现一些不确定的问题，笔者在这方面吃过亏，这里建议下载2.3.3版本。
+&lt;img src=&quot;\images\posts\2018\0301\RubyInstall.png&quot; alt=&quot;Ruby安装&quot; height=&quot;60%&quot; width=&quot;60%&quot; /&gt;
+	安装过程一路”Next”，需要注意记得勾选下图中的选项。
+&lt;img src=&quot;\images\posts\2018\0301\RubyInstall_1.png&quot; alt=&quot;Ruby安装选项&quot; height=&quot;60%&quot; width=&quot;60%&quot; /&gt;
+	安装完成后输入”ruby -v”，显示版本号表明安装成功。
+&lt;img src=&quot;\images\posts\2018\0301\RubyInstall_2.png&quot; alt=&quot;Ruby安装成功&quot; height=&quot;60%&quot; width=&quot;60%&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;2安装devkit&quot;&gt;2.安装DevKit&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://rubyinstaller.org/downloads/&quot;&gt;下载链接&lt;/a&gt;，地址与Ruby下载地址相同，注意要安装与Ruby版本相对应的DevKit
+&lt;img src=&quot;\images\posts\2018\0301\DevKitInstall.png&quot; alt=&quot;DevKit下载&quot; height=&quot;60%&quot; width=&quot;60%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;　　进入到DevKit的安装目录，在命令行窗口输入下列命令：  &lt;br /&gt;
+　　&lt;code class=&quot;highlighter-rouge&quot;&gt;ruby dk.rb init&lt;/code&gt;  &lt;br /&gt;
+　　&lt;code class=&quot;highlighter-rouge&quot;&gt;ruby dk.rb install&lt;/code&gt;  &lt;br /&gt;
+&lt;img src=&quot;\images\posts\2018\0301\DevKitInstall_1.png&quot; alt=&quot;DevKit配置&quot; height=&quot;60%&quot; width=&quot;60%&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;3安装jekyll&quot;&gt;3.安装Jekyll&lt;/h3&gt;
+&lt;p&gt;首先检查是否安装gem:&lt;code class=&quot;highlighter-rouge&quot;&gt;gem -v&lt;/code&gt;，输入&lt;code class=&quot;highlighter-rouge&quot;&gt;gem install jekyll&lt;/code&gt;安装Jekyll（科学上网）。&lt;/p&gt;
+
+&lt;h3 id=&quot;4启动jekyll&quot;&gt;4.启动Jekyll&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll new myblog&lt;/code&gt;  &lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;cd myblog&lt;/code&gt;  &lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;  &lt;br /&gt;
+启动过程可能出现下图中的错误信息：
+&lt;img src=&quot;\images\posts\2018\0301\JekyllError.png&quot; alt=&quot;Jekyll启动Error&quot; /&gt;
+这是由于Jekyll启动需要的默认端口4000已被占用，只需要打开_config.yml 在最后加上一行 port:5002 (其它端口也可)问题解决&lt;/p&gt;
+
+&lt;h3 id=&quot;参考&quot;&gt;参考&lt;/h3&gt;
+&lt;p&gt;[1] &lt;a href=&quot;http://jekyllcn.com/&quot;&gt;Jekyll官方文档&lt;/a&gt;  &lt;br /&gt;
+[2] &lt;a href=&quot;http://blog.csdn.net/itmyhome1990/article/details/50443826&quot;&gt;升级Jekyll 3.0&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 01 Mar 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:5001//blog/jekyll-install.html</link>
+        <guid isPermaLink="true">http://localhost:5001//blog/jekyll-install.html</guid>
+      </item>
+    
+      <item>
         <title>MarkDown编写小技巧</title>
         <description>&lt;p&gt;　　MarkDown的详细使用方法可参考&lt;a href=&quot;https://www.appinn.com/markdown/&quot;&gt;这里&lt;/a&gt;，下面是几个常用的小技巧。&lt;/p&gt;
 &lt;h3 id=&quot;1换行&quot;&gt;1.换行&lt;/h3&gt;
@@ -1393,132 +1438,6 @@ In very high dimensional spaces, the curse of dimensionality causes the algorith
         <pubDate>Sun, 05 Feb 2017 00:00:00 +0800</pubDate>
         <link>http://localhost:5001//blog/cbir-query-expansion.html</link>
         <guid isPermaLink="true">http://localhost:5001//blog/cbir-query-expansion.html</guid>
-      </item>
-    
-      <item>
-        <title>机器视觉：Caffe Python接口多进程提取特征</title>
-        <description>&lt;p&gt;想象这样一个场景：服务器上配备了很多GPU显卡，而你又使用的是Caffe，不幸的是，你还选用了Python来写代码，不幸中的不幸是你还要在短时间内处理百万千万规模的图片。那么，问题来了，Caffe本身对多卡的支持就不是很好，而你还要用Python，而且即便你通过设置batch size的大小来加快处理速度，但你还是只把一张显卡用起来。有没有办法把所有的GPU都用起来，并行提取特征呢？&lt;/p&gt;
-
-&lt;p&gt;上面这个问题在实际中是一个经常会碰到并且绕不过的问题，小白菜在近期也遇到了此问题，并且上面那些设定的条件小白菜不幸都一一躺枪。虽然如此，问题还是要解决的。下面小白菜聊聊&lt;strong&gt;如何使用python 的multiprocessing多进程并行库来把服务器上的多张GPU都用起来，进行特征的并行提取&lt;/strong&gt;。在正式给出具体的解决方案之前，还是有必要了解multiprocessing多进程并行库的。&lt;/p&gt;
-
-&lt;h2 id=&quot;multiprocessing多进程并行库&quot;&gt;multiprocessing多进程并行库&lt;/h2&gt;
-
-&lt;p&gt;multiprocessing对于进程的管理，是使用进程池pool进行管理的。pool允许用户指定进程数目，在线程池未满的时候，如果新的请求提交过来，则pool会创建新的进程来执行该请求，如果池中的进程数已经达到规定最大值，那么该请求就会等待，直到池中有进程结束，才会创建新的进程来执行它。pool对于进程的管理，有两种方式，分别是异步方式(也称非阻塞方式)和同步方式(也称阻塞方式)，对应的方法为apply_async()和apply()。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;apply()&lt;/code&gt;: 同步方式(也称阻塞方式)。阻塞，顾名思义，在执行该任务的时候，把所有的接口资源都堵住了，其他的任务必须等待这个任务执行完后，再释放资源后，才能执行其他的任务，所以非常的好理解。&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pool.apply_async()&lt;/code&gt;: 异步方式(也称非阻塞方式)。有了上面阻塞的解读，小白菜以为异步方式已经非常直白了。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;进程池管理pool还有一些其他的方法，这里不再做详细的展开了，更多关于Python的multiprocessing的解读，可以参考&lt;a href=&quot;http://thief.one/2016/11/24/Multiprocessing-Pool/&quot;&gt;Multiprocessing.Pool&lt;/a&gt;和&lt;a href=&quot;https://jingsam.github.io/2015/12/31/multiprocessing.html&quot;&gt;正确使用 Multiprocessing 的姿势&lt;/a&gt;，写得直白易懂。&lt;/p&gt;
-
-&lt;p&gt;有了上面对Python的multiprocessing的认识，我们再回到使用python的multiprocessing多进程并行库来把服务器上的多张GPU都用起来这个问题上。根据对pool对进程池管理的方法，显然&lt;code class=&quot;highlighter-rouge&quot;&gt;pool.apply_async()&lt;/code&gt;是我们需要的，确定好了这个后，小白菜再简单聊聊并行化设计的思路。&lt;/p&gt;
-
-&lt;h2 id=&quot;并行化方案&quot;&gt;并行化方案&lt;/h2&gt;
-
-&lt;p&gt;问题定义：假设需要处理的图片有800万，服务器上有8块GPU，如何使用python 的multiprocessing多进程并行库来把服务器上的多张GPU都用起来，进行特征的并行提取。&lt;/p&gt;
-
-&lt;p&gt;对于上述给出的问题定义，小白菜设计的并行化方案为：将800万分成8等分，启动8个进程，每个进程使用一块GPU，并且每一个进程载入一份预训练的模型，这样就可以把8块GPU都用起来了。此种方案，可以最大限度的使用GPU，有多少块GPU，就可以用多少GPU，下面是具体的编码。&lt;/p&gt;
-
-&lt;h2 id=&quot;具体编码&quot;&gt;具体编码&lt;/h2&gt;
-
-&lt;p&gt;有了上面对multiprocessing和并行化方案后，在具体编码的时候，要做的事情其实非常简单，主要需要完成的就是两件事：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;把图片数据按GPU的数目进行等量划分，即写一个&lt;code class=&quot;highlighter-rouge&quot;&gt;split_list()&lt;/code&gt;函数&lt;/li&gt;
-  &lt;li&gt;正常编写特征提取代码，写一个&lt;code class=&quot;highlighter-rouge&quot;&gt;gpu_task&lt;/code&gt;函数&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;具体代码如下:&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/env python&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# Author: github@willard-yuan&lt;/span&gt;
-
-
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;multiprocessing&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;multiprocessing&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;freeze_support&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Pool&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;os&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;caffe&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;scipy&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;h5py&lt;/span&gt;
-
-
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;split_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;alist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wanted_parts&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;alist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wanted_parts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wanted_parts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; 
-             &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wanted_parts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;gpu_task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prototxt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;caffemodel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;layer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path_images&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gpu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;num_images&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path_images&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;h5f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h5py&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'w'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-    &lt;span class=&quot;c&quot;&gt;# set gpu card&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;caffe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_device&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gpu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;caffe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_mode_gpu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-    &lt;span class=&quot;c&quot;&gt;# init NN&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;net&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;caffe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Net&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prototxt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;caffemodel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;caffe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TEST&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;net&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;forward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;features&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;image_names&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;enumerate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path_images&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;d(&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;d), &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_images&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;basename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;splitext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;basename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'single'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
- 
-            &lt;span class=&quot;c&quot;&gt;# extract feature&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;feat&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
- 
-            &lt;span class=&quot;n&quot;&gt;features&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;feat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;image_names&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;basename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;      
-
-    &lt;span class=&quot;n&quot;&gt;features&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;features&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;h5f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'feats'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;features&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;h5f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'names'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;image_names&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;h5f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;    
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;gpu &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;d task has finished...&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gpu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'__main__'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;multiprocessing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;freeze_support&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;pool&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;multiprocessing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pool&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    
-    &lt;span class=&quot;n&quot;&gt;dir_images&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'....'&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;path_images&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dir_images&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sorted&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;listdir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dir_images&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;endswith&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'.jpg'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;layer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'...'&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;prototxt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'VGG_ILSVRC_16.prototxt'&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;caffemodel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'VGG_ILSVRC_16_layers.caffemodel'&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;out&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'...'&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;parts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# 8个进程&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;out_files&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;xrange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;out_files&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'.h5'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;blocks&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;split_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path_images&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wanted_parts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;xrange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pool&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;apply_async&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gpu_task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prototxt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;caffemodel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;layer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;blocks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;out_files&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),))&lt;/span&gt;
-    
-    &lt;span class=&quot;n&quot;&gt;pool&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;pool&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;上面那些&lt;code class=&quot;highlighter-rouge&quot;&gt;...&lt;/code&gt;的部分，是小白菜刻意省略的，具体在实际使用的时候，可以结合自己的需要来做更改。另外一个&lt;code class=&quot;highlighter-rouge&quot;&gt;pool.close()&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;pool.join()&lt;/code&gt;的次序一定不能反，否则会出错。执行完close后不会有新的进程加入到pool,join函数等待所有子进程结束。&lt;/p&gt;
-
-&lt;p&gt;对于特征的保存，可以采用hdf5的格式进行存储，上面每一个进程提取的特征，保存在一个h5(HDF5格式)文件中，这样对于八个进程，可以得到8份小文件，每一份文件里存了图像文件名及其对应的特征。&lt;/p&gt;
-</description>
-        <pubDate>Sun, 08 Jan 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:5001//blog/caffe-python-extract-feature-parallel.html</link>
-        <guid isPermaLink="true">http://localhost:5001//blog/caffe-python-extract-feature-parallel.html</guid>
       </item>
     
   </channel>

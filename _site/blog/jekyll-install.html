@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="aexITLS38FdIRzwj25OVWxm87rpa9l-UV0URTyC9cTs" />
   <title>
-    <!--MarkDown编写小技巧
+    <!--Windows系统下安装Jekyll
     -->
   </title>
   <link rel="stylesheet" href="../css/site.css">
@@ -60,21 +60,21 @@
 <div class="inner">
 <div class = "post-header">
   <h1>
-    MarkDown编写小技巧
+    Windows系统下安装Jekyll
   </h1>
   <ul class="meta">
   	<i class="fa fa-calendar"></i>
-  	2018年02月28日
+  	2018年03月01日
   	<i class="space"></i>
   	<i class="fa fa-archive"></i>
-  	<a class="tag" href="http://localhost:5001/blog/categories.html#MarkDown">MarkDown</a>
+  	<a class="tag" href="http://localhost:5001/blog/categories.html#Jekyll">Jekyll</a>
   	<i class="space"></i>
   	<i class="fa fa-tags"></i>
   	
-  	    <a class="tag" href="http://localhost:5001/tag/#MarkDown">MarkDown</a>
+  	    <a class="tag" href="http://localhost:5001/tag/#Jekyll">Jekyll</a>
   	    <i class="space"></i>
   	
-  	<i class="space"></i> 字数:144
+  	<i class="space"></i> 字数:969
   </ul>
 </div>
 </div>
@@ -86,15 +86,43 @@
               <div class="toc"></div>
               </div>
           </div>
-  	   <p>　　MarkDown的详细使用方法可参考<a href="https://www.appinn.com/markdown/">这里</a>，下面是几个常用的小技巧。</p>
-<h3 id="1换行">1.换行</h3>
-<p>　　在行尾敲两个以上的空格，然后回车</p>
+  	   <p>　　Jekyll是一个简单的博客形态的静态站点生成机器，我们能通过Jekyll方便的搭建并维护一个博客。     <br />
+　　除此之外，Jekyll也可以运行在GitHub Page上，也就是说，你可以使用GitHub的服务来搭建你的项目页面、博客或者网站，而且是完全免费的。</p>
 
-<h3 id="2首行缩进">2.首行缩进</h3>
-<p>　　MarkDown是不支持缩进的，将输入法切换为全角，敲两个空格，简单美观</p>
+<p>　　下面来看一下如何在Windows系统下正确安装Jekyll：</p>
 
-<h3 id="3图片缩放">3.图片缩放</h3>
-<p>　　![描述](url){:height=”70%” width=”70%”}</p>
+<h3 id="1安装ruby">1.安装Ruby</h3>
+<p><a href="https://rubyinstaller.org/downloads/">下载链接</a>    <br />
+版本的差异可能会出现一些不确定的问题，笔者在这方面吃过亏，这里建议下载2.3.3版本。
+<img src="\images\posts\2018\0301\RubyInstall.png" alt="Ruby安装" height="60%" width="60%" />
+	安装过程一路”Next”，需要注意记得勾选下图中的选项。
+<img src="\images\posts\2018\0301\RubyInstall_1.png" alt="Ruby安装选项" height="60%" width="60%" />
+	安装完成后输入”ruby -v”，显示版本号表明安装成功。
+<img src="\images\posts\2018\0301\RubyInstall_2.png" alt="Ruby安装成功" height="60%" width="60%" /></p>
+
+<h3 id="2安装devkit">2.安装DevKit</h3>
+<p><a href="https://rubyinstaller.org/downloads/">下载链接</a>，地址与Ruby下载地址相同，注意要安装与Ruby版本相对应的DevKit
+<img src="\images\posts\2018\0301\DevKitInstall.png" alt="DevKit下载" height="60%" width="60%" /></p>
+
+<p>　　进入到DevKit的安装目录，在命令行窗口输入下列命令：  <br />
+　　<code class="highlighter-rouge">ruby dk.rb init</code>  <br />
+　　<code class="highlighter-rouge">ruby dk.rb install</code>  <br />
+<img src="\images\posts\2018\0301\DevKitInstall_1.png" alt="DevKit配置" height="60%" width="60%" /></p>
+
+<h3 id="3安装jekyll">3.安装Jekyll</h3>
+<p>首先检查是否安装gem:<code class="highlighter-rouge">gem -v</code>，输入<code class="highlighter-rouge">gem install jekyll</code>安装Jekyll（科学上网）。</p>
+
+<h3 id="4启动jekyll">4.启动Jekyll</h3>
+<p><code class="highlighter-rouge">jekyll new myblog</code>  <br />
+<code class="highlighter-rouge">cd myblog</code>  <br />
+<code class="highlighter-rouge">jekyll serve</code>  <br />
+启动过程可能出现下图中的错误信息：
+<img src="\images\posts\2018\0301\JekyllError.png" alt="Jekyll启动Error" />
+这是由于Jekyll启动需要的默认端口4000已被占用，只需要打开_config.yml 在最后加上一行 port:5002 (其它端口也可)问题解决</p>
+
+<h3 id="参考">参考</h3>
+<p>[1] <a href="http://jekyllcn.com/">Jekyll官方文档</a>  <br />
+[2] <a href="http://blog.csdn.net/itmyhome1990/article/details/50443826">升级Jekyll 3.0</a></p>
 
   	</div>
 	</div>
@@ -105,13 +133,9 @@
 <ul class="pager">
     
     <li class="previous">
-       <a href="/blog/first-blog.html">←计算着色器（Compute Shader）</a>
+       <a href="/blog/markdown.html">←MarkDown编写小技巧</a>
     </li>
     
-    
-    <li class="next">
-    	<a href="/blog/jekyll-install.html">Windows系统下安装Jekyll→</a>
-    </li>
     
  </ul>
 </section>
