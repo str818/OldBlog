@@ -7,6 +7,32 @@
     <atom:link href="http://localhost:5001/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>专利侵权判定</title>
+        <description>&lt;p&gt;发明或者实用新型专利权的保护范围以其权利要求的内容为准，说明书及附图可以用于解释权利要求。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;专利保护范围以权利要求书记载的内容为准，而不是由专利产品确定的&lt;/li&gt;
+  &lt;li&gt;在上述前提下，允许利用说明书和附图对权利要求的保护范围作出一定的修正，这种修正是以专利权人对自己的发明创造作出具体说明为依据。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;一项专利权的权利要求是由一个个具体的技术特征组成的。在一项发明专利中，其权利要求书中至少包含一项独立权利要求，还可以包括从属权利要求。由于独立权利要求是构成一项发明创造必不可少的必要技术特征组成的，
+它的保护范围最大，所以&lt;strong&gt;专利权的保护范围首先是由独立权利要求确定的&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;如果缺少了某个技术特征时，会使方案不完整，或者行不通，那该技术特征就是&lt;strong&gt;必要技术特征&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;一般来说，在具体进行专利侵权判定时，应当结合以下几个主要原则加以运用：&lt;/p&gt;
+
+&lt;h4 id=&quot;一-全面覆盖原则&quot;&gt;一 全面覆盖原则&lt;/h4&gt;
+&lt;h3 id=&quot;参考&quot;&gt;参考&lt;/h3&gt;
+&lt;p&gt;[1] &lt;a href=&quot;http://jekyllcn.com/&quot;&gt;Jekyll官方文档&lt;/a&gt;  &lt;br /&gt;
+[2] &lt;a href=&quot;http://blog.csdn.net/itmyhome1990/article/details/50443826&quot;&gt;升级Jekyll 3.0&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 02 Mar 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:5001//blog/patent-infringement-judgment.html</link>
+        <guid isPermaLink="true">http://localhost:5001//blog/patent-infringement-judgment.html</guid>
+      </item>
+    
+      <item>
         <title>Windows系统下安装Jekyll</title>
         <description>&lt;p&gt;　　Jekyll是一个简单的博客形态的静态站点生成机器，我们能通过Jekyll方便的搭建并维护一个博客。     &lt;br /&gt;
 　　除此之外，Jekyll也可以运行在GitHub Page上，也就是说，你可以使用GitHub的服务来搭建你的项目页面、博客或者网站，而且是完全免费的。&lt;/p&gt;
@@ -1335,109 +1361,6 @@ In very high dimensional spaces, the curse of dimensionality causes the algorith
         <pubDate>Sat, 08 Apr 2017 00:00:00 +0800</pubDate>
         <link>http://localhost:5001//blog/ann-search.html</link>
         <guid isPermaLink="true">http://localhost:5001//blog/ann-search.html</guid>
-      </item>
-    
-      <item>
-        <title>图像检索：拓展查询(Query Expansion)</title>
-        <description>&lt;p&gt;拓展查询(QE, Query Expansion): 指对返回的前top@K个结果，包括查询样本本身，对它们的特征求和取平均，再做一次查询，此过程称为拓展查询。&lt;/p&gt;
-
-&lt;p&gt;从上面的定义可以看出，拓展查询属于重排的一种方式。通过Query Expansion，以达到提高检索召回率的目的。前面的博文&lt;a href=&quot;http://yongyuan.name/blog/fitting-line-with-ransac.html&quot;&gt;RANSAC算法做直线拟合&lt;/a&gt;曾介绍过RANSAC的基本思想，放在词袋模型里（相应博文见&lt;a href=&quot;http://yongyuan.name/blog/CBIR-BoW-for-image-retrieval-and-practice.html&quot;&gt;图像检索：BoW图像检索原理与实战&lt;/a&gt;），我们可以使用RANSAC方法或Weak Geometry Consistency方法做几何校正，进行重排以提高检索的精度。在这篇博文中，小白菜暂时抛开其他的重排方法，重点分析Query Expansion对图像检索精度的提升。&lt;/p&gt;
-
-&lt;p&gt;根据小白菜读图像检索论文获得的对Query Expansion的感知，做完Query Expansion能够获得百分之几的精度提升。为了证实Query Expansion对检索精度的改善，在过去一段时间里，小白菜在Oxford Building数据库上对其做了验证。下面是小白菜对Query Expansion的实验整理和总结。&lt;/p&gt;
-
-&lt;h2 id=&quot;特征表达&quot;&gt;特征表达&lt;/h2&gt;
-
-&lt;p&gt;Oxford Building图像数据库，每一幅图像提取的是一个512维的CNN特征，即对于Oxford Building图像数据库，我们得到5064个512维的特征。&lt;/p&gt;
-
-&lt;h2 id=&quot;特征索引&quot;&gt;特征索引&lt;/h2&gt;
-
-&lt;p&gt;直接采用brute线性扫描，因为图库才5064张图像，所以没必要建索引。在实际应用中，我们可以采用哈希、倒排PQ等方式，这一部分可以细讲很多，有机会的话，小白菜单独拿一个篇幅整理实用的索引方法。&lt;/p&gt;
-
-&lt;h2 id=&quot;评价指标&quot;&gt;评价指标&lt;/h2&gt;
-
-&lt;p&gt;实验评价指标采用平均检索精度(mAP, mean average precision), mAP如何计算可以阅读&lt;a href=&quot;http://yongyuan.name/blog/evaluation-of-information-retrieval.html&quot;&gt;信息检索评价指标&lt;/a&gt;，里面有对mAP如何计算的详细介绍。&lt;/p&gt;
-
-&lt;p&gt;对于Oxford Building图像数据库，mAP的计算过程有必要详细介绍一下。Oxford Building的groundtruth有三类：good, ok和junk。对于某个检索结果，如果它在good和ok中，则被判为是与查询图像相关的；如果在junk中，则被判为是不相关的。我们可以细致的阅读一下Oxford Building的mAP计算代码：&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;compute_ap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ranked_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;old_recall&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;old_precision&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  
-  &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intersect_size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ranked_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ranked_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ranked_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intersect_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;recall&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intersect_size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;precision&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;intersect_size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;ap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;recall&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;old_recall&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;old_precision&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;precision&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;2.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;old_recall&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;recall&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;old_precision&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;precision&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;其中，&lt;code class=&quot;highlighter-rouge&quot;&gt;pos&lt;/code&gt;即是由good和ok构成的set，&lt;code class=&quot;highlighter-rouge&quot;&gt;amb&lt;/code&gt;是junk构成的set，&lt;code class=&quot;highlighter-rouge&quot;&gt;ranked_list&lt;/code&gt;即查询得到的结果。可以看到Oxford Building上计算的AP是检索准确率(precision)和检索召回率(recall)曲线围成的面积(梯形面积，积分思想)，mAP即是对AP的平均。&lt;/p&gt;
-
-&lt;p&gt;理解完了Oxford Building的mAP计算过程，还有一个需要考虑的问题是：对于查询图像特征的提取，我们要不要把Oxford Building提供的区域框用上，即在提取特征的时候，我们是在整个图像提取特征，还是在区域框内提取特征？&lt;strong&gt;在图像检索的论文中，在计算Oxford Building的mAP时，都是在区域框内提取特征。但是放在实际中，我们肯定是希望我们的图像检索方法能够尽可能的减少交互，即在不框选区域的时候，也能够取得很好的检索精度&lt;/strong&gt;。所以，基于这样的意图，在实际中测评检索算法的mAP时，小白菜更喜欢采用在整个图像上提取特征的方式。当然，如果不嫌麻烦的话，可以两种方式都测评一下。&lt;/p&gt;
-
-&lt;h2 id=&quot;查询拓展对map的提升&quot;&gt;查询拓展对mAP的提升&lt;/h2&gt;
-
-&lt;p&gt;库内查询，所以返回的top@1为查询图像自身，并且采用的是全图查询(即上面提到的对于查询图像是在整个图像上提取特征，而不是在区域框内提取特征)，表中top@K表示取前K个样本求和取平均。&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;top@K&lt;/th&gt;
-      &lt;th&gt;0&lt;/th&gt;
-      &lt;th&gt;1&lt;/th&gt;
-      &lt;th&gt;2&lt;/th&gt;
-      &lt;th&gt;3&lt;/th&gt;
-      &lt;th&gt;4&lt;/th&gt;
-      &lt;th&gt;5&lt;/th&gt;
-      &lt;th&gt;6&lt;/th&gt;
-      &lt;th&gt;7&lt;/th&gt;
-      &lt;th&gt;8&lt;/th&gt;
-      &lt;th&gt;9&lt;/th&gt;
-      &lt;th&gt;10&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;MAP&lt;/td&gt;
-      &lt;td&gt;61.91%&lt;/td&gt;
-      &lt;td&gt;61.91%&lt;/td&gt;
-      &lt;td&gt;65.42%&lt;/td&gt;
-      &lt;td&gt;66.52%&lt;/td&gt;
-      &lt;td&gt;66.07%&lt;/td&gt;
-      &lt;td&gt;66.38%&lt;/td&gt;
-      &lt;td&gt;66.51%&lt;/td&gt;
-      &lt;td&gt;65.65%&lt;/td&gt;
-      &lt;td&gt;65.16%&lt;/td&gt;
-      &lt;td&gt;63.46%&lt;/td&gt;
-      &lt;td&gt;62.41%&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;上面表格中mAP随top@K用曲线表示如下：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://ose5hybez.bkt.clouddn.com/2017/0205/qe_map_zpsbat8vy5x.PNG&quot; alt=&quot;drawing&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;在不做Query Expansion的时候，即top@K=0时，mAP为61.91%。因为查询属于库内查询，所以top@K=1时，仍然是查询向量本身，故结果与top@K=0是一样的。从实验的结果可以看出，Query Expansion确实能够提升检索的精度，在top@K=3的时候，取得了最高的检索精度。相比于不做Query Expansion，Query Expansion可以提高4%-5%的检索精度。&lt;/p&gt;
-
-&lt;p&gt;所以，&lt;strong&gt;在实际中，做Query Expansion完全是有必要的，一则是它实现简单，二则是它提升的效果还是比较明显的&lt;/strong&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sun, 05 Feb 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:5001//blog/cbir-query-expansion.html</link>
-        <guid isPermaLink="true">http://localhost:5001//blog/cbir-query-expansion.html</guid>
       </item>
     
   </channel>
