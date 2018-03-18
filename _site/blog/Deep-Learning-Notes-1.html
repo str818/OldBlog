@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="aexITLS38FdIRzwj25OVWxm87rpa9l-UV0URTyC9cTs" />
   <title>
-    <!--环境配置：Ubuntu开发环境配置
+    <!--深度学习笔记
     -->
   </title>
   <link rel="stylesheet" href="../css/site.css">
@@ -60,21 +60,21 @@
 <div class="inner">
 <div class = "post-header">
   <h1>
-    环境配置：Ubuntu开发环境配置
+    深度学习笔记
   </h1>
   <ul class="meta">
   	<i class="fa fa-calendar"></i>
-  	2014年06月01日
+  	2018年03月03日
   	<i class="space"></i>
   	<i class="fa fa-archive"></i>
-  	<a class="tag" href="http://localhost:5001/blog/categories.html#资源集合">资源集合</a>
+  	<a class="tag" href="http://localhost:5001/blog/categories.html#DeepLearning">DeepLearning</a>
   	<i class="space"></i>
   	<i class="fa fa-tags"></i>
   	
-  	    <a class="tag" href="http://localhost:5001/tag/#资源整理">资源整理</a>
+  	    <a class="tag" href="http://localhost:5001/tag/#DeepLearning">DeepLearning</a>
   	    <i class="space"></i>
   	
-  	<i class="space"></i> 字数:2408
+  	<i class="space"></i> 字数:370
   </ul>
 </div>
 </div>
@@ -86,110 +86,26 @@
               <div class="toc"></div>
               </div>
           </div>
-  	   <h3 id="安装tree">安装tree</h3>
+  	   <p>AI系统需要具备自己获取知识的能力，即从原始数据中提取模式的能力。这种能力被称为机器学习（machine learning)。</p>
 
-<p><code class="highlighter-rouge">tree</code>命令用来以列表的形式展示目录层次。Ubuntu下安装tree可以通过下面命令：</p>
+<p>深度学习（deep learning）通过其他较简单的标识来表达复杂表示，解决了表示学习中的核心问题。</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>tree
-</code></pre></div></div>
+<ul>
+  <li>专利保护范围以权利要求书记载的内容为准，而不是由专利产品确定的</li>
+  <li>在上述前提下，允许利用说明书和附图对权利要求的保护范围作出一定的修正，这种修正是以专利权人对自己的发明创造作出具体说明为依据。</li>
+</ul>
 
-<p>关于tree命令的使用，可以参阅<a href="http://www.computerhope.com/unix/tree.htm">在线文档</a>，最常见的命令可能如下：</p>
+<p>一项专利权的权利要求是由一个个具体的技术特征组成的。在一项发明专利中，其权利要求书中至少包含一项独立权利要求，还可以包括从属权利要求。由于独立权利要求是构成一项发明创造必不可少的必要技术特征组成的，
+它的保护范围最大，所以<strong>专利权的保护范围首先是由独立权利要求确定的</strong>。</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>willard@willard-PC~/python/web <span class="nv">$ </span>tree weblog <span class="nt">-L</span> 2
-weblog
-├── bin
-│   ├── activate
-│   ├── activate.csh
-│   ├── activate.fish
-│   ├── activate_this.py
-│   ├── easy_install
-│   ├── easy_install-2.7
-│   ├── pip
-│   ├── pip2
-│   ├── pip2.7
-│   ├── python
-│   ├── python2 -&gt; python
-│   └── python2.7 -&gt; python
-├── include
-│   └── python2.7 -&gt; /usr/include/python2.7
-├── lib
-│   └── python2.7
-└── <span class="nb">local</span>
-    ├── bin -&gt; /home/willard/python/web/weblog/bin
-    ├── include -&gt; /home/willard/python/web/weblog/include
-    └── lib -&gt; /home/willard/python/web/weblog/lib
-</code></pre></div></div>
+<p>如果缺少了某个技术特征时，会使方案不完整，或者行不通，那该技术特征就是<strong>必要技术特征</strong>。</p>
 
-<p>上面L表示遍历层数，“2”表示树有两层。此外，这里也有关于tree的一些说明，<a href="http://liunian.info/ubuntu%E4%B9%8Btree%E5%91%BD%E4%BB%A4.html">楼梯</a></p>
+<p>一般来说，在具体进行专利侵权判定时，应当结合以下几个主要原则加以运用：</p>
 
-<h3 id="安装pip和virtualenv">安装pip和virtualenv</h3>
-
-<p><code class="highlighter-rouge">pip</code>是python的包管理工具，有建议说Python的包都用pip进行管理，<code class="highlighter-rouge">virtualenv</code>是 Python 多版本管理的利器，不同版本的开发调试全靠它，可以通过下面命令安装pip和virtualenv。</p>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">## 安装pip</span>
-<span class="nb">sudo </span>apt-get <span class="nb">install </span>python-pip
-<span class="c">## 安装virtualenv</span>
-<span class="nb">sudo </span>apt-get <span class="nb">install </span>virtualenv
-</code></pre></div></div>
-
-<h3 id="安装git">安装git</h3>
-
-<p><code class="highlighter-rouge">git</code>是目前最主流的版本控制管理工具，可以通过下面命令安装：</p>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>git
-</code></pre></div></div>
-
-<p>关于git的使用，在<a href="http://yuanyong.org/blog/the-trick-of-using-git.html">Ubuntu下git使用教程</a>中有详细介绍。</p>
-
-<h3 id="安装simplecv">安装SimpleCV</h3>
-
-<p><a href="https://github.com/sightmachine/SimpleCV">SimpleCV</a>是一个计算机视觉库，目前在github上很活跃。根据文档说明，可以通过下面命令安装该库：</p>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>ipython python-opencv python-scipy python-numpy python-pygame python-setuptools git
-git clone https://github.com/sightmachine/SimpleCV.git
-<span class="nb">cd </span>SimpleCV/
-<span class="nb">sudo </span>pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
-<span class="nb">sudo </span>python setup.py <span class="nb">install</span>
-</code></pre></div></div>
-
-<p>上面第一条命令安装Python第三方模块，包括ipython,opencv,scipy,numpy,pygame,setuptools和git,第二条命令从远程仓库克隆rep,然后安装依赖关系，打开看了一下<code class="highlighter-rouge">requirements.txt</code>要安装的依赖关系：</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>numpy
-scipy
-PIL
-ipython
-svgwrite
-pygame==1.9.1release
-</code></pre></div></div>
-
-<p>在运行第三条命令的时候，出现下面错误：</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>willard@willard-PC~/python/cv/SimpleCV $ sudo pip install -r requirements.txt
-Requirement already satisfied (use --upgrade to upgrade): numpy in /usr/lib/python2.7/dist-packages (from -r requirements.txt (line 1))
-Requirement already satisfied (use --upgrade to upgrade): scipy in /usr/lib/python2.7/dist-packages (from -r requirements.txt (line 2))
-Downloading/unpacking PIL (from -r requirements.txt (line 3))
-  Could not find any downloads that satisfy the requirement PIL (from -r requirements.txt (line 3))
-  Some externally hosted files were ignored (use --allow-external PIL to allow).
-Cleaning up...
-No distributions at all found for PIL (from -r requirements.txt (line 3))
-Storing debug log for failure in /home/willard/.pip/pip.log
-</code></pre></div></div>
-
-<p>暂时还不知道是什么原因，先到这里，睡觉了。</p>
-
-<h3 id="20140408-更新">2014/04/08 更新</h3>
-
-<p>没想到昨天在SimpleCV Rep开了个issue很快得到了回答，本小子将问题反馈过去，@sksavant给出的回答是：</p>
-
-<blockquote>
-  <p>Use ‘pip install -r requirements.txt –allow-all-external –allow-unverified PIL’</p>
-</blockquote>
-
-<p>本小子试了一下，发觉还是不行，然后按照给出的错误提示，运行<code class="highlighter-rouge">sudo pip install -r requirements.txt --allow-unverified PIL</code>，安装成功。</p>
-
-<p>Reference:</p>
-
-<p>1:<a href="http://xiaocong.github.io/blog/2013/06/18/customize-python-dev-environment-on-ubuntu/">在Ubuntu下配置舒服的Python开发环境</a></p>
+<h4 id="一-全面覆盖原则">一 全面覆盖原则</h4>
+<h3 id="参考">参考</h3>
+<p>[1] <a href="http://jekyllcn.com/">Jekyll官方文档</a>  <br />
+[2] <a href="http://blog.csdn.net/itmyhome1990/article/details/50443826">升级Jekyll 3.0</a></p>
 
   	</div>
 	</div>
@@ -200,13 +116,9 @@ Storing debug log for failure in /home/willard/.pip/pip.log
 <ul class="pager">
     
     <li class="previous">
-       <a href="/blog/the-trick-of-using-git.html">←编码训练：Ubuntu下git使用教程</a>
+       <a href="/blog/patent-infringement-judgment.html">←专利侵权判定</a>
     </li>
     
-    
-    <li class="next">
-    	<a href="/blog/evaluation-of-information-retrieval.html">图像检索：信息检索评价指标→</a>
-    </li>
     
  </ul>
 </section>
