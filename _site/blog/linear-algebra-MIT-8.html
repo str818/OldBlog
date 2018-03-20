@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="aexITLS38FdIRzwj25OVWxm87rpa9l-UV0URTyC9cTs" />
   <title>
-    <!--深度学习笔记
+    <!--线代笔记——第8课 求解Ax=b:可解性与结构
     -->
   </title>
   <link rel="stylesheet" href="../css/site.css">
@@ -63,21 +63,27 @@
 <div class="inner">
 <div class = "post-header">
   <h1>
-    深度学习笔记
+    线代笔记——第8课 求解Ax=b:可解性与结构
   </h1>
   <ul class="meta">
   	<i class="fa fa-calendar"></i>
-  	2018年03月03日
+  	2018年03月19日
   	<i class="space"></i>
   	<i class="fa fa-archive"></i>
-  	<a class="tag" href="http://localhost:5001/blog/categories.html#DeepLearning">DeepLearning</a>
+  	<a class="tag" href="http://localhost:5001/blog/categories.html#线性代数">线性代数</a>
   	<i class="space"></i>
   	<i class="fa fa-tags"></i>
   	
-  	    <a class="tag" href="http://localhost:5001/tag/#DeepLearning">DeepLearning</a>
+  	    <a class="tag" href="http://localhost:5001/tag/#学习笔记">学习笔记</a>
   	    <i class="space"></i>
   	
-  	<i class="space"></i> 字数:370
+  	    <a class="tag" href="http://localhost:5001/tag/#线性代数">线性代数</a>
+  	    <i class="space"></i>
+  	
+  	    <a class="tag" href="http://localhost:5001/tag/#MIT公开课">MIT公开课</a>
+  	    <i class="space"></i>
+  	
+  	<i class="space"></i> 字数:2244
   </ul>
 </div>
 </div>
@@ -89,26 +95,87 @@
               <div class="toc"></div>
               </div>
           </div>
-  	   <p>AI系统需要具备自己获取知识的能力，即从原始数据中提取模式的能力。这种能力被称为机器学习（machine learning)。</p>
+  	   <h3 id="一可解的条件solvability-conditions-on-b">一、可解的条件（Solvability conditions on b）</h3>
+<p>　　取
+<script type="math/tex">% <![CDATA[
+\boldsymbol{A} = \begin{bmatrix} 1 & 2 & 2 & 2\\ 2 & 4 & 6 & 8\\ 3 & 6 & 8 & 10\\ \end{bmatrix}\quad %]]></script>
+，则方程为
+<script type="math/tex">% <![CDATA[
+\begin{bmatrix}	1 & 2 & 2 & 2\\ 2 & 4 & 6 & 8\\ 3 & 6 & 8 & 10\\ \end{bmatrix}\quad
+\begin{bmatrix}	x_1\\ x_2\\ x_3\\ x_4\\ \end{bmatrix}\quad
+= \begin{bmatrix} b_1\\ b_2\\ b_3\\ \end{bmatrix}\quad %]]></script>
+。</p>
 
-<p>深度学习（deep learning）通过其他较简单的标识来表达复杂表示，解决了表示学习中的核心问题。</p>
+<p>　　矩阵A的第三行为第一行和第二行的和，因此<script type="math/tex">Ax=b</script>中b的第3个分量也要等于其第1和第2两个分量的和。
+若b不满足<script type="math/tex">b_3=b_1+b_2</script>则方程组无解。</p>
 
-<ul>
-  <li>专利保护范围以权利要求书记载的内容为准，而不是由专利产品确定的</li>
-  <li>在上述前提下，允许利用说明书和附图对权利要求的保护范围作出一定的修正，这种修正是以专利权人对自己的发明创造作出具体说明为依据。</li>
-</ul>
+<p>　　检验<script type="math/tex">Ax=b</script>是否可解的方法是对増广矩阵进行消元。如果矩阵A的行被完全消去的话，则对应的b的分量也要得0.在本例中，矩阵A的第三行被消去：</p>
 
-<p>一项专利权的权利要求是由一个个具体的技术特征组成的。在一项发明专利中，其权利要求书中至少包含一项独立权利要求，还可以包括从属权利要求。由于独立权利要求是构成一项发明创造必不可少的必要技术特征组成的，
-它的保护范围最大，所以<strong>专利权的保护范围首先是由独立权利要求确定的</strong>。</p>
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{bmatrix}	1 & 2 & 2 & 2 & b_1\\ 2 & 4 & 6 & 8 & b_2\\ 3 & 6 & 8 & 10 & b_3\\ \end{bmatrix}\quad
+\rightarrow\dots\rightarrow
+\begin{bmatrix}	1 & 2 & 2 & 2 & b_1\\ 0 & 0 & 2 & 4 & b_2-2b_1\\ 0 & 0 & 0 & 0 & b_3-b_2-b_1\\ \end{bmatrix}\quad %]]></script>
 
-<p>如果缺少了某个技术特征时，会使方案不完整，或者行不通，那该技术特征就是<strong>必要技术特征</strong>。</p>
+<p>　　如果<script type="math/tex">Ax=b</script>有解，则<script type="math/tex">b_3-b_1-b_2=0</script>。在本例中另<script type="math/tex">b=\begin{bmatrix} 1\\ 5\\ 6\\ \end{bmatrix}\quad</script>。</p>
 
-<p>一般来说，在具体进行专利侵权判定时，应当结合以下几个主要原则加以运用：</p>
+<p>　　只有当b处于矩阵的列空间C(A)之中时，方程才有解。本课推导出矩阵A的行向量若经过线性组合成为了零向量，则对应的b经同样的线性组合后也要等于0，
+因此看起来有了两条关于b的限制条件，但实际上这两点是等价的。</p>
 
-<h4 id="一-全面覆盖原则">一 全面覆盖原则</h4>
-<h3 id="参考">参考</h3>
-<p>[1] <a href="http://jekyllcn.com/">Jekyll官方文档</a>  <br />
-[2] <a href="http://blog.csdn.net/itmyhome1990/article/details/50443826">升级Jekyll 3.0</a></p>
+<h3 id="二通解complete-solution">二、通解（Complete solution）</h3>
+
+<p>　　为求得<script type="math/tex">Ax=b</script>的所有解，我们首先检验方程是否可解，然后找到一个特解。将特解和矩阵零空间的向量相加即为方程的通解。</p>
+
+<h3 id="三特解a-particular-solution">三、特解（A particular solution）</h3>
+
+<p>　　求<script type="math/tex">Ax=b</script>特解的方法是将自由变量均赋值为0，求解其主变量。</p>
+
+<p>　　本例中，令<script type="math/tex">x_2=x_4=0</script>得到方程组：
+	<script type="math/tex">x_1+2x_3=1</script>　　<script type="math/tex">2x_3 = 3</script></p>
+
+<p>　　可解得<script type="math/tex">x_3=3/2,x_1=-2</script>,因此特解为<script type="math/tex">x_p=\begin{bmatrix} -2\\ 0\\ 3/2\\ 0\\ \end{bmatrix}\quad</script>。</p>
+
+<h3 id="四与零空间进行线性组合combined-with-nullspace">四、与零空间进行线性组合（Combined with nullspace）</h3>
+
+<p>　　<script type="math/tex">Ax=b</script>的通解为<script type="math/tex">x_c = x_p + x_n</script>,其中<script type="math/tex">x_n</script>为矩阵零空间中的一般向量。将<script type="math/tex">Ax_p=b</script>和<script type="math/tex">Ax_n=0</script>相加可得<script type="math/tex">A(x_p + x_n)=b</script>。</p>
+
+<p>　　上一课得到了矩阵零空间N(A)就是其特解<script type="math/tex">\begin{bmatrix} -2\\ 1\\ 0\\ 0\\ \end{bmatrix}\quad</script>和<script type="math/tex">\begin{bmatrix} 2\\ 0\\ -2\\ 1\\ \end{bmatrix}\quad</script>
+的线性组合的集合。因此方程<script type="math/tex">Ax=\begin{bmatrix} 1\\ 5\\ 6\\ \end{bmatrix}\quad</script>的通解即为：</p>
+
+<script type="math/tex; mode=display">x_c =\begin{bmatrix} -2\\ 0\\ 3/2\\ 0\\ \end{bmatrix}\quad + c_1 \begin{bmatrix} -2\\ 1\\ 0\\ 0\\ \end{bmatrix}\quad + c_2 \begin{bmatrix} 2\\ 0\\ -2\\ 1\\ \end{bmatrix}\quad</script>
+
+<p>其中<script type="math/tex">c_1</script>和<script type="math/tex">c_2</script>为任意实数。</p>
+
+<p>　　矩阵中的零空间N(A)是<script type="math/tex">R^4</script>空间中的二维子空间，方程的解<script type="math/tex">Ax=b</script>构成了穿过<script type="math/tex">x_p</script>点并和矩阵零空间平行的“平面”。但该“平面”并不是<script type="math/tex">R^4</script>的子空间。</p>
+
+<h3 id="五秩rank">五、秩（Rank）</h3>
+
+<p>　　矩阵的秩等于矩阵的主元数。如果m×n矩阵的秩为r，则必有r≤m且r≤n。</p>
+
+<p>　　满秩的情形：</p>
+
+<p>　　* <strong>列满秩</strong>：<script type="math/tex">r=n</script>。每列都有主元，x的每一个分量都是主变量，没有自由变量。零空间N(A)之内只有零向量。
+方程无解或者有唯一解<script type="math/tex">x_p</script>。</p>
+
+<p>　　例如<script type="math/tex">% <![CDATA[
+A=\begin{bmatrix} 1 & 3\\ 2 & 1\\ 6 & 1\\ 5 & 1\\ \end{bmatrix}\quad \rightarrow 
+\begin{bmatrix} 1 & 0\\ 0 & 1\\ 0 & 0\\ 0 & 0\\ \end{bmatrix}\quad = R %]]></script></p>
+
+<p>　　* <strong>行满秩</strong>：<script type="math/tex">r=m</script>。没行都有主元，无论b取何值，方程<script type="math/tex">Ax=b</script>都有解。主变量r个，自由变量n-r个。</p>
+
+<p>　　例如<script type="math/tex">% <![CDATA[
+A=\begin{bmatrix} 1 & 2 & 6 & 5\\ 3 & 1 & 1 & 1\\ \end{bmatrix}\quad \rightarrow 
+\begin{bmatrix} 1 & 0 & * & *\\ 0 & 1 & * & *\\ \end{bmatrix}\quad = R %]]></script></p>
+
+<p>　　* <strong>满秩</strong>：<script type="math/tex">r=m=n</script>。矩阵可逆，零空间只有零向量，无论b取何值，方程<script type="math/tex">Ax=b</script>都有唯一解。</p>
+
+<p>　　例如<script type="math/tex">% <![CDATA[
+A=\begin{bmatrix} 1 & 2 \\ 3 & 1 \\ \end{bmatrix}\quad \rightarrow 
+\begin{bmatrix} 1 & 0 \\ 0 & 1 \\ \end{bmatrix}\quad = R %]]></script>为单位阵。</p>
+
+<p>　　<strong>秩决定了方程组解的数量。</strong></p>
+
+<p><img src="\images\posts\Math\LinearAlgebra\8_1.png" alt="秩" height="70%" width="70%" /></p>
+
 
   	</div>
 	</div>
@@ -119,13 +186,9 @@
 <ul class="pager">
     
     <li class="previous">
-       <a href="/blog/patent-infringement-judgment.html">←专利侵权判定</a>
+       <a href="/blog/jekyll-mathematical-formula.html">←基于Jekyll的博客支持LaTeX数学公式</a>
     </li>
     
-    
-    <li class="next">
-    	<a href="/blog/jekyll-mathematical-formula.html">基于Jekyll的博客支持LaTeX数学公式→</a>
-    </li>
     
  </ul>
 </section>
