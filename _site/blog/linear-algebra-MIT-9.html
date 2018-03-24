@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="aexITLS38FdIRzwj25OVWxm87rpa9l-UV0URTyC9cTs" />
   <title>
-    <!--线代笔记——第8课 求解Ax=b:可解性与结构
+    <!--线代笔记——第9课 线性无关，基和维数
     -->
   </title>
   <link rel="stylesheet" href="../css/site.css">
@@ -63,11 +63,11 @@
 <div class="inner">
 <div class = "post-header">
   <h1>
-    线代笔记——第8课 求解Ax=b:可解性与结构
+    线代笔记——第9课 线性无关，基和维数
   </h1>
   <ul class="meta">
   	<i class="fa fa-calendar"></i>
-  	2018年03月19日
+  	2018年03月23日
   	<i class="space"></i>
   	<i class="fa fa-archive"></i>
   	<a class="tag" href="http://localhost:5001/blog/categories.html#线性代数">线性代数</a>
@@ -83,7 +83,7 @@
   	    <a class="tag" href="http://localhost:5001/tag/#MIT公开课">MIT公开课</a>
   	    <i class="space"></i>
   	
-  	<i class="space"></i> 字数:2244
+  	<i class="space"></i> 字数:2356
   </ul>
 </div>
 </div>
@@ -95,86 +95,89 @@
               <div class="toc"></div>
               </div>
           </div>
-  	   <h3 id="一可解的条件solvability-conditions-on-b">一、可解的条件（Solvability conditions on b）</h3>
-<p>　　取
-<script type="math/tex">% <![CDATA[
-\boldsymbol{A} = \begin{bmatrix} 1 & 2 & 2 & 2\\ 2 & 4 & 6 & 8\\ 3 & 6 & 8 & 10\\ \end{bmatrix}\quad %]]></script>
-，则方程为
-<script type="math/tex">% <![CDATA[
-\begin{bmatrix}	1 & 2 & 2 & 2\\ 2 & 4 & 6 & 8\\ 3 & 6 & 8 & 10\\ \end{bmatrix}\quad
-\begin{bmatrix}	x_1\\ x_2\\ x_3\\ x_4\\ \end{bmatrix}\quad
-= \begin{bmatrix} b_1\\ b_2\\ b_3\\ \end{bmatrix}\quad %]]></script>
-。</p>
+  	   <p>　　向量的线性无关意为着什么？如何用线性无关的概念来帮助我们描述包括零空间在内的子空间？</p>
 
-<p>　　矩阵A的第三行为第一行和第二行的和，因此<script type="math/tex">Ax=b</script>中b的第3个分量也要等于其第1和第2两个分量的和。
-若b不满足<script type="math/tex">b_3=b_1+b_2</script>则方程组无解。</p>
+<h3 id="一线性无关independence">一、线性无关（Independence）</h3>
 
-<p>　　检验<script type="math/tex">Ax=b</script>是否可解的方法是对増广矩阵进行消元。如果矩阵A的行被完全消去的话，则对应的b的分量也要得0.在本例中，矩阵A的第三行被消去：</p>
+<p>　　矩阵<script type="math/tex">\boldsymbol{A}</script>为m×n矩阵，其中m＜n（因此<script type="math/tex">\boldsymbol{Ax=b}</script>中未知数个数多于方程数）。
+则<script type="math/tex">\boldsymbol{A}</script>中具有至少一个自由变量，那么<script type="math/tex">\boldsymbol{Ax=b}</script>一定具有非零解。<script type="math/tex">\boldsymbol{A}</script>的列向量
+可以线性组合得到零向量，所以<script type="math/tex">\boldsymbol{A}</script>的列向量是线性相关的。</p>
+
+<p>　　若<script type="math/tex">c_1x_1+c_2x_2+\dots+c_nx_n=0</script>仅在<script type="math/tex">c_1=c_2=\dots=c_n=0</script>时才成立，则称向量<script type="math/tex">x_1,x_2\dots x_n</script>是线性无关的。
+若这些向量作为列向量构成矩阵<strong>A</strong>，则方程<script type="math/tex">\boldsymbol{Ax=b}</script>只有零解<script type="math/tex">x=0</script>，或称矩阵<strong>A</strong>的零空间只有零向量。
+换而言之，若存在非零向量c，使得<script type="math/tex">Ac=0</script>，则这个矩阵<strong>A</strong>的列向量线性相关。</p>
+
+<p>　　在<script type="math/tex">\boldsymbol{R}^2</script>中，两个向量只要不在一条直线上就是线性无关的。（在<script type="math/tex">\boldsymbol{R}^3</script>中，三个向量线性无关的条件是他们不在一个平面上。）
+若选定空间<script type="math/tex">\boldsymbol{R}^2</script>中的三个向量，则他们必然是线性相关的。例如，如下的三个向量<script type="math/tex">\boldsymbol{v_1,v_2,v_3}</script>是线性相关的。</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
-\begin{bmatrix}	1 & 2 & 2 & 2 & b_1\\ 2 & 4 & 6 & 8 & b_2\\ 3 & 6 & 8 & 10 & b_3\\ \end{bmatrix}\quad
-\rightarrow\dots\rightarrow
-\begin{bmatrix}	1 & 2 & 2 & 2 & b_1\\ 0 & 0 & 2 & 4 & b_2-2b_1\\ 0 & 0 & 0 & 0 & b_3-b_2-b_1\\ \end{bmatrix}\quad %]]></script>
+\boldsymbol{A} = \begin{bmatrix} 2 & 1 & 2.5\\ 1 & 2 & -1\\ \end{bmatrix}\quad %]]></script>
 
-<p>　　如果<script type="math/tex">Ax=b</script>有解，则<script type="math/tex">b_3-b_1-b_2=0</script>。在本例中另<script type="math/tex">b=\begin{bmatrix} 1\\ 5\\ 6\\ \end{bmatrix}\quad</script>。</p>
+<p>　　由我们研究方程组得到的结论，此时矩阵构成的方程<script type="math/tex">\boldsymbol{Ax}=0</script>必有非零解，即三个向量线性相关。</p>
 
-<p>　　只有当b处于矩阵的列空间C(A)之中时，方程才有解。本课推导出矩阵A的行向量若经过线性组合成为了零向量，则对应的b经同样的线性组合后也要等于0，
-因此看起来有了两条关于b的限制条件，但实际上这两点是等价的。</p>
+<p>　　如果矩阵<strong>A</strong>的列向量为线性无关，则<strong>A</strong>所有的列均为主元列，没有自由列，矩阵的秩为n。若<strong>A</strong>的列向量
+列为线性相关，则矩阵的秩小于n，并且存在自由列。</p>
 
-<h3 id="二通解complete-solution">二、通解（Complete solution）</h3>
+<h3 id="二张成空间spanning-a-space">二、张成空间（Spanning a space）</h3>
 
-<p>　　为求得<script type="math/tex">Ax=b</script>的所有解，我们首先检验方程是否可解，然后找到一个特解。将特解和矩阵零空间的向量相加即为方程的通解。</p>
+<p>　　当一个空间是由向量<script type="math/tex">v_1,v_2...v_k</script>的所有线性组合组成时，我们成这些向量张成了这个空间。例如矩阵的列向量张成
+了该矩阵的列空间。</p>
 
-<h3 id="三特解a-particular-solution">三、特解（A particular solution）</h3>
+<p>　　如果向量<script type="math/tex">v_1,v_2...v_k</script>张成空间<strong>S</strong>，则<strong>S</strong>是包含这些向量的最小空间。</p>
 
-<p>　　求<script type="math/tex">Ax=b</script>特解的方法是将自由变量均赋值为0，求解其主变量。</p>
+<h3 id="三基与维数basis--dimension">三、基与维数（Basis &amp; Dimension）</h3>
 
-<p>　　本例中，令<script type="math/tex">x_2=x_4=0</script>得到方程组：
-	<script type="math/tex">x_1+2x_3=1</script>　　<script type="math/tex">2x_3 = 3</script></p>
+<p>　　向量空间的基是具有如下两个性质的一组向量<script type="math/tex">v_1,v_2...v_d</script>：  <br />
+　　　　* <script type="math/tex">v_1,v_2...v_d</script>线性无关   <br />
+　　　　* <script type="math/tex">v_1,v_2...v_d</script>张成该向量空间 <br />
+　　空间的基告诉我们了空间的一切信息。</p>
 
-<p>　　可解得<script type="math/tex">x_3=3/2,x_1=-2</script>,因此特解为<script type="math/tex">x_p=\begin{bmatrix} -2\\ 0\\ 3/2\\ 0\\ \end{bmatrix}\quad</script>。</p>
+<p>　　例：<script type="math/tex">R^3</script>空间有一组基
+<script type="math/tex">\begin{bmatrix} 1 \\ 0\\ 0\\ \end{bmatrix}\quad</script>,
+<script type="math/tex">\begin{bmatrix} 0 \\ 1\\ 0\\ \end{bmatrix}\quad</script>,
+<script type="math/tex">\begin{bmatrix} 0 \\ 0\\ 1\\ \end{bmatrix}\quad</script>，
+因为<script type="math/tex">c_1\begin{bmatrix} 1 \\ 0\\ 0\\ \end{bmatrix}\quad+
+c_2\begin{bmatrix} 0 \\ 1\\ 0\\ \end{bmatrix}\quad+
+c_3\begin{bmatrix} 0 \\ 0\\ 1\\ \end{bmatrix}\quad=
+\begin{bmatrix} 0 \\ 0\\ 0\\ \end{bmatrix}\quad</script>只有零解，并且这三个向量可以张成<script type="math/tex">R^3</script>空间。</p>
 
-<h3 id="四与零空间进行线性组合combined-with-nullspace">四、与零空间进行线性组合（Combined with nullspace）</h3>
+<p>　　而<script type="math/tex">\begin{bmatrix} 1 \\ 1\\ 2\\ \end{bmatrix}\quad</script>,
+<script type="math/tex">\begin{bmatrix} 2 \\ 2\\ 5\\ \end{bmatrix}\quad</script>,
+<script type="math/tex">\begin{bmatrix} 3 \\ 3\\ 8\\ \end{bmatrix}\quad</script>则不能构成一组基，因为以它们为列向量组成的矩阵，
+有两个相同的行，消元肯定有自由列存在，因此这三个向量并非线性无关。</p>
 
-<p>　　<script type="math/tex">Ax=b</script>的通解为<script type="math/tex">x_c = x_p + x_n</script>,其中<script type="math/tex">x_n</script>为矩阵零空间中的一般向量。将<script type="math/tex">Ax_p=b</script>和<script type="math/tex">Ax_n=0</script>相加可得<script type="math/tex">A(x_p + x_n)=b</script>。</p>
+<p>　　若以<script type="math/tex">R^n</script>空间中的n个向量为列向量构成的矩阵为可逆矩阵，则这些向量可以构成<script type="math/tex">R^n</script>空间中的一组基。</p>
 
-<p>　　上一课得到了矩阵零空间N(A)就是其特解<script type="math/tex">\begin{bmatrix} -2\\ 1\\ 0\\ 0\\ \end{bmatrix}\quad</script>和<script type="math/tex">\begin{bmatrix} 2\\ 0\\ -2\\ 1\\ \end{bmatrix}\quad</script>
-的线性组合的集合。因此方程<script type="math/tex">Ax=\begin{bmatrix} 1\\ 5\\ 6\\ \end{bmatrix}\quad</script>的通解即为：</p>
+<h3 id="四子空间的基basis-for-a-subspace">四、子空间的基（Basis for a subspace）</h3>
 
-<script type="math/tex; mode=display">x_c =\begin{bmatrix} -2\\ 0\\ 3/2\\ 0\\ \end{bmatrix}\quad + c_1 \begin{bmatrix} -2\\ 1\\ 0\\ 0\\ \end{bmatrix}\quad + c_2 \begin{bmatrix} 2\\ 0\\ -2\\ 1\\ \end{bmatrix}\quad</script>
+<p>　　向量<script type="math/tex">\begin{bmatrix} 1 \\ 1\\ 2\\ \end{bmatrix}\quad</script>,
+<script type="math/tex">\begin{bmatrix} 2 \\ 2\\ 5\\ \end{bmatrix}\quad</script>可以张成<script type="math/tex">R^3</script>中的一个平面，但是它们无法成为<script type="math/tex">R^3</script>空间的一组基。</p>
 
-<p>其中<script type="math/tex">c_1</script>和<script type="math/tex">c_2</script>为任意实数。</p>
+<p>　　空间的每一组基都具有相同的向量数，这个数值就是空间的维数（dimension）。所以<script type="math/tex">R^n</script>空间的每组基都包含n个向量。
+　　</p>
+<h3 id="五列空间和零空间的基">五、列空间和零空间的基</h3>
 
-<p>　　矩阵中的零空间N(A)是<script type="math/tex">R^4</script>空间中的二维子空间，方程的解<script type="math/tex">Ax=b</script>构成了穿过<script type="math/tex">x_p</script>点并和矩阵零空间平行的“平面”。但该“平面”并不是<script type="math/tex">R^4</script>的子空间。</p>
+<script type="math/tex; mode=display">% <![CDATA[
+\boldsymbol{A} = \begin{bmatrix} 1 & 2 & 3 & 1\\ 1 & 1 & 2 & 1\\ 1 & 2 & 3 & 1\\ \end{bmatrix}\quad %]]></script>
 
-<h3 id="五秩rank">五、秩（Rank）</h3>
+<p>　　<strong>讨论列空间：</strong>矩阵<strong>A</strong>的四个列向量张成了矩阵<strong>A</strong>的列空间，其中第3列和第4列与前两列线性相关，而前两个列向量线性无关。因此前两列为主元列。他们组成
+了列空间 C(A)的一组基。矩阵的秩为 2。</p>
 
-<p>　　矩阵的秩等于矩阵的主元数。如果m×n矩阵的秩为r，则必有r≤m且r≤n。</p>
+<p>　　实际上对于任何矩阵<strong>A</strong>均有：</p>
 
-<p>　　满秩的情形：</p>
+<p>　　　　矩阵的秩 r=矩阵主元列的数目=列空间的维数</p>
 
-<p>　　* <strong>列满秩</strong>：<script type="math/tex">r=n</script>。每列都有主元，x的每一个分量都是主变量，没有自由变量。零空间N(A)之内只有零向量。
-方程无解或者有唯一解<script type="math/tex">x_p</script>。</p>
+<p>　　注意：矩阵具有秩（rank）而不是维数（dimension），而空间有维数而不是秩。</p>
 
-<p>　　例如<script type="math/tex">% <![CDATA[
-A=\begin{bmatrix} 1 & 3\\ 2 & 1\\ 6 & 1\\ 5 & 1\\ \end{bmatrix}\quad \rightarrow 
-\begin{bmatrix} 1 & 0\\ 0 & 1\\ 0 & 0\\ 0 & 0\\ \end{bmatrix}\quad = R %]]></script></p>
+<p>　　当知道了列空间的维数，可以从矩阵列向量中随意选取足够数量的线性无关的向量，它们每一组都可以构成列空间的一组基。</p>
 
-<p>　　* <strong>行满秩</strong>：<script type="math/tex">r=m</script>。没行都有主元，无论b取何值，方程<script type="math/tex">Ax=b</script>都有解。主变量r个，自由变量n-r个。</p>
+<p>　　<strong>讨论零空间：</strong>本例中矩阵的列向量不是线性无关的，因此其零空间 N(A)不止包含零向量。因为可以看出第 3 列是第 1 列和第 2 列的加和。所以向量
+<script type="math/tex">\begin{bmatrix} -1\\ -1\\ 1\\ 0\\ \end{bmatrix}\quad</script>必然在零空间 N(A)之内。同样还可以对 <script type="math/tex">x_4</script> 赋值为 1，从而得到
+<script type="math/tex">\begin{bmatrix} 1\\ 0\\ 0\\ 1\\ \end{bmatrix}\quad</script>也在零空间之内。它们就
+是 <script type="math/tex">Ax=0</script> 的两个特解。</p>
 
-<p>　　例如<script type="math/tex">% <![CDATA[
-A=\begin{bmatrix} 1 & 2 & 6 & 5\\ 3 & 1 & 1 & 1\\ \end{bmatrix}\quad \rightarrow 
-\begin{bmatrix} 1 & 0 & * & *\\ 0 & 1 & * & *\\ \end{bmatrix}\quad = R %]]></script></p>
-
-<p>　　* <strong>满秩</strong>：<script type="math/tex">r=m=n</script>。矩阵可逆，零空间只有零向量，无论b取何值，方程<script type="math/tex">Ax=b</script>都有唯一解。</p>
-
-<p>　　例如<script type="math/tex">% <![CDATA[
-A=\begin{bmatrix} 1 & 2 \\ 3 & 1 \\ \end{bmatrix}\quad \rightarrow 
-\begin{bmatrix} 1 & 0 \\ 0 & 1 \\ \end{bmatrix}\quad = R %]]></script>为单位阵。</p>
-
-<p>　　<strong>秩决定了方程组解的数量。</strong></p>
-
-<p><img src="\images\posts\Math\LinearAlgebra\8_1.png" alt="秩" height="70%" width="70%" /></p>
+<p>　　零空间的维数=自由列的数目=n-r，因此本例中 N(A)的维数为 4-2=2。这两个
+特解就构成了零空间的一组基。</p>
 
 
   	</div>
@@ -186,13 +189,9 @@ A=\begin{bmatrix} 1 & 2 \\ 3 & 1 \\ \end{bmatrix}\quad \rightarrow
 <ul class="pager">
     
     <li class="previous">
-       <a href="/blog/jekyll-mathematical-formula.html">←基于Jekyll的博客支持LaTeX数学公式</a>
+       <a href="/blog/linear-algebra-MIT-8.html">←线代笔记——第8课 求解Ax=b:可解性与结构</a>
     </li>
     
-    
-    <li class="next">
-    	<a href="/blog/linear-algebra-MIT-9.html">线代笔记——第9课 线性无关，基和维数→</a>
-    </li>
     
  </ul>
 </section>

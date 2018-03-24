@@ -7,6 +7,98 @@
     <atom:link href="http://localhost:5001/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>线代笔记——第9课 线性无关，基和维数</title>
+        <description>&lt;p&gt;　　向量的线性无关意为着什么？如何用线性无关的概念来帮助我们描述包括零空间在内的子空间？&lt;/p&gt;
+
+&lt;h3 id=&quot;一线性无关independence&quot;&gt;一、线性无关（Independence）&lt;/h3&gt;
+
+&lt;p&gt;　　矩阵&lt;script type=&quot;math/tex&quot;&gt;\boldsymbol{A}&lt;/script&gt;为m×n矩阵，其中m＜n（因此&lt;script type=&quot;math/tex&quot;&gt;\boldsymbol{Ax=b}&lt;/script&gt;中未知数个数多于方程数）。
+则&lt;script type=&quot;math/tex&quot;&gt;\boldsymbol{A}&lt;/script&gt;中具有至少一个自由变量，那么&lt;script type=&quot;math/tex&quot;&gt;\boldsymbol{Ax=b}&lt;/script&gt;一定具有非零解。&lt;script type=&quot;math/tex&quot;&gt;\boldsymbol{A}&lt;/script&gt;的列向量
+可以线性组合得到零向量，所以&lt;script type=&quot;math/tex&quot;&gt;\boldsymbol{A}&lt;/script&gt;的列向量是线性相关的。&lt;/p&gt;
+
+&lt;p&gt;　　若&lt;script type=&quot;math/tex&quot;&gt;c_1x_1+c_2x_2+\dots+c_nx_n=0&lt;/script&gt;仅在&lt;script type=&quot;math/tex&quot;&gt;c_1=c_2=\dots=c_n=0&lt;/script&gt;时才成立，则称向量&lt;script type=&quot;math/tex&quot;&gt;x_1,x_2\dots x_n&lt;/script&gt;是线性无关的。
+若这些向量作为列向量构成矩阵&lt;strong&gt;A&lt;/strong&gt;，则方程&lt;script type=&quot;math/tex&quot;&gt;\boldsymbol{Ax=b}&lt;/script&gt;只有零解&lt;script type=&quot;math/tex&quot;&gt;x=0&lt;/script&gt;，或称矩阵&lt;strong&gt;A&lt;/strong&gt;的零空间只有零向量。
+换而言之，若存在非零向量c，使得&lt;script type=&quot;math/tex&quot;&gt;Ac=0&lt;/script&gt;，则这个矩阵&lt;strong&gt;A&lt;/strong&gt;的列向量线性相关。&lt;/p&gt;
+
+&lt;p&gt;　　在&lt;script type=&quot;math/tex&quot;&gt;\boldsymbol{R}^2&lt;/script&gt;中，两个向量只要不在一条直线上就是线性无关的。（在&lt;script type=&quot;math/tex&quot;&gt;\boldsymbol{R}^3&lt;/script&gt;中，三个向量线性无关的条件是他们不在一个平面上。）
+若选定空间&lt;script type=&quot;math/tex&quot;&gt;\boldsymbol{R}^2&lt;/script&gt;中的三个向量，则他们必然是线性相关的。例如，如下的三个向量&lt;script type=&quot;math/tex&quot;&gt;\boldsymbol{v_1,v_2,v_3}&lt;/script&gt;是线性相关的。&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\boldsymbol{A} = \begin{bmatrix} 2 &amp; 1 &amp; 2.5\\ 1 &amp; 2 &amp; -1\\ \end{bmatrix}\quad %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;　　由我们研究方程组得到的结论，此时矩阵构成的方程&lt;script type=&quot;math/tex&quot;&gt;\boldsymbol{Ax}=0&lt;/script&gt;必有非零解，即三个向量线性相关。&lt;/p&gt;
+
+&lt;p&gt;　　如果矩阵&lt;strong&gt;A&lt;/strong&gt;的列向量为线性无关，则&lt;strong&gt;A&lt;/strong&gt;所有的列均为主元列，没有自由列，矩阵的秩为n。若&lt;strong&gt;A&lt;/strong&gt;的列向量
+列为线性相关，则矩阵的秩小于n，并且存在自由列。&lt;/p&gt;
+
+&lt;h3 id=&quot;二张成空间spanning-a-space&quot;&gt;二、张成空间（Spanning a space）&lt;/h3&gt;
+
+&lt;p&gt;　　当一个空间是由向量&lt;script type=&quot;math/tex&quot;&gt;v_1,v_2...v_k&lt;/script&gt;的所有线性组合组成时，我们成这些向量张成了这个空间。例如矩阵的列向量张成
+了该矩阵的列空间。&lt;/p&gt;
+
+&lt;p&gt;　　如果向量&lt;script type=&quot;math/tex&quot;&gt;v_1,v_2...v_k&lt;/script&gt;张成空间&lt;strong&gt;S&lt;/strong&gt;，则&lt;strong&gt;S&lt;/strong&gt;是包含这些向量的最小空间。&lt;/p&gt;
+
+&lt;h3 id=&quot;三基与维数basis--dimension&quot;&gt;三、基与维数（Basis &amp;amp; Dimension）&lt;/h3&gt;
+
+&lt;p&gt;　　向量空间的基是具有如下两个性质的一组向量&lt;script type=&quot;math/tex&quot;&gt;v_1,v_2...v_d&lt;/script&gt;：  &lt;br /&gt;
+　　　　* &lt;script type=&quot;math/tex&quot;&gt;v_1,v_2...v_d&lt;/script&gt;线性无关   &lt;br /&gt;
+　　　　* &lt;script type=&quot;math/tex&quot;&gt;v_1,v_2...v_d&lt;/script&gt;张成该向量空间 &lt;br /&gt;
+　　空间的基告诉我们了空间的一切信息。&lt;/p&gt;
+
+&lt;p&gt;　　例：&lt;script type=&quot;math/tex&quot;&gt;R^3&lt;/script&gt;空间有一组基
+&lt;script type=&quot;math/tex&quot;&gt;\begin{bmatrix} 1 \\ 0\\ 0\\ \end{bmatrix}\quad&lt;/script&gt;,
+&lt;script type=&quot;math/tex&quot;&gt;\begin{bmatrix} 0 \\ 1\\ 0\\ \end{bmatrix}\quad&lt;/script&gt;,
+&lt;script type=&quot;math/tex&quot;&gt;\begin{bmatrix} 0 \\ 0\\ 1\\ \end{bmatrix}\quad&lt;/script&gt;，
+因为&lt;script type=&quot;math/tex&quot;&gt;c_1\begin{bmatrix} 1 \\ 0\\ 0\\ \end{bmatrix}\quad+
+c_2\begin{bmatrix} 0 \\ 1\\ 0\\ \end{bmatrix}\quad+
+c_3\begin{bmatrix} 0 \\ 0\\ 1\\ \end{bmatrix}\quad=
+\begin{bmatrix} 0 \\ 0\\ 0\\ \end{bmatrix}\quad&lt;/script&gt;只有零解，并且这三个向量可以张成&lt;script type=&quot;math/tex&quot;&gt;R^3&lt;/script&gt;空间。&lt;/p&gt;
+
+&lt;p&gt;　　而&lt;script type=&quot;math/tex&quot;&gt;\begin{bmatrix} 1 \\ 1\\ 2\\ \end{bmatrix}\quad&lt;/script&gt;,
+&lt;script type=&quot;math/tex&quot;&gt;\begin{bmatrix} 2 \\ 2\\ 5\\ \end{bmatrix}\quad&lt;/script&gt;,
+&lt;script type=&quot;math/tex&quot;&gt;\begin{bmatrix} 3 \\ 3\\ 8\\ \end{bmatrix}\quad&lt;/script&gt;则不能构成一组基，因为以它们为列向量组成的矩阵，
+有两个相同的行，消元肯定有自由列存在，因此这三个向量并非线性无关。&lt;/p&gt;
+
+&lt;p&gt;　　若以&lt;script type=&quot;math/tex&quot;&gt;R^n&lt;/script&gt;空间中的n个向量为列向量构成的矩阵为可逆矩阵，则这些向量可以构成&lt;script type=&quot;math/tex&quot;&gt;R^n&lt;/script&gt;空间中的一组基。&lt;/p&gt;
+
+&lt;h3 id=&quot;四子空间的基basis-for-a-subspace&quot;&gt;四、子空间的基（Basis for a subspace）&lt;/h3&gt;
+
+&lt;p&gt;　　向量&lt;script type=&quot;math/tex&quot;&gt;\begin{bmatrix} 1 \\ 1\\ 2\\ \end{bmatrix}\quad&lt;/script&gt;,
+&lt;script type=&quot;math/tex&quot;&gt;\begin{bmatrix} 2 \\ 2\\ 5\\ \end{bmatrix}\quad&lt;/script&gt;可以张成&lt;script type=&quot;math/tex&quot;&gt;R^3&lt;/script&gt;中的一个平面，但是它们无法成为&lt;script type=&quot;math/tex&quot;&gt;R^3&lt;/script&gt;空间的一组基。&lt;/p&gt;
+
+&lt;p&gt;　　空间的每一组基都具有相同的向量数，这个数值就是空间的维数（dimension）。所以&lt;script type=&quot;math/tex&quot;&gt;R^n&lt;/script&gt;空间的每组基都包含n个向量。
+　　&lt;/p&gt;
+&lt;h3 id=&quot;五列空间和零空间的基&quot;&gt;五、列空间和零空间的基&lt;/h3&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\boldsymbol{A} = \begin{bmatrix} 1 &amp; 2 &amp; 3 &amp; 1\\ 1 &amp; 1 &amp; 2 &amp; 1\\ 1 &amp; 2 &amp; 3 &amp; 1\\ \end{bmatrix}\quad %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;　　&lt;strong&gt;讨论列空间：&lt;/strong&gt;矩阵&lt;strong&gt;A&lt;/strong&gt;的四个列向量张成了矩阵&lt;strong&gt;A&lt;/strong&gt;的列空间，其中第3列和第4列与前两列线性相关，而前两个列向量线性无关。因此前两列为主元列。他们组成
+了列空间 C(A)的一组基。矩阵的秩为 2。&lt;/p&gt;
+
+&lt;p&gt;　　实际上对于任何矩阵&lt;strong&gt;A&lt;/strong&gt;均有：&lt;/p&gt;
+
+&lt;p&gt;　　　　矩阵的秩 r=矩阵主元列的数目=列空间的维数&lt;/p&gt;
+
+&lt;p&gt;　　注意：矩阵具有秩（rank）而不是维数（dimension），而空间有维数而不是秩。&lt;/p&gt;
+
+&lt;p&gt;　　当知道了列空间的维数，可以从矩阵列向量中随意选取足够数量的线性无关的向量，它们每一组都可以构成列空间的一组基。&lt;/p&gt;
+
+&lt;p&gt;　　&lt;strong&gt;讨论零空间：&lt;/strong&gt;本例中矩阵的列向量不是线性无关的，因此其零空间 N(A)不止包含零向量。因为可以看出第 3 列是第 1 列和第 2 列的加和。所以向量
+&lt;script type=&quot;math/tex&quot;&gt;\begin{bmatrix} -1\\ -1\\ 1\\ 0\\ \end{bmatrix}\quad&lt;/script&gt;必然在零空间 N(A)之内。同样还可以对 &lt;script type=&quot;math/tex&quot;&gt;x_4&lt;/script&gt; 赋值为 1，从而得到
+&lt;script type=&quot;math/tex&quot;&gt;\begin{bmatrix} 1\\ 0\\ 0\\ 1\\ \end{bmatrix}\quad&lt;/script&gt;也在零空间之内。它们就
+是 &lt;script type=&quot;math/tex&quot;&gt;Ax=0&lt;/script&gt; 的两个特解。&lt;/p&gt;
+
+&lt;p&gt;　　零空间的维数=自由列的数目=n-r，因此本例中 N(A)的维数为 4-2=2。这两个
+特解就构成了零空间的一组基。&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 23 Mar 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:5001//blog/linear-algebra-MIT-9.html</link>
+        <guid isPermaLink="true">http://localhost:5001//blog/linear-algebra-MIT-9.html</guid>
+      </item>
+    
+      <item>
         <title>线代笔记——第8课 求解Ax=b:可解性与结构</title>
         <description>&lt;h3 id=&quot;一可解的条件solvability-conditions-on-b&quot;&gt;一、可解的条件（Solvability conditions on b）&lt;/h3&gt;
 &lt;p&gt;　　取
