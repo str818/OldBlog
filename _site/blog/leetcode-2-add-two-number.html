@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="aexITLS38FdIRzwj25OVWxm87rpa9l-UV0URTyC9cTs" />
+  <title>
+    <!--【LeetCode】2_Add Two Number
+    -->
+  </title>
+  <link rel="stylesheet" href="../css/site.css">
+  <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  
+  <link href="/blog/feed.xml" type="application/rss+xml" rel="alternate" title="Latest 10 blog posts (atom)" />
+
+  
+
+  
+
+  
+</head>
+
+<body>
+  <div class="header-container">
+    <header class="inner">
+      <nav>
+        <a class="" href="/">关于</a>
+        <!--<a class="" href="/cn/project">项目</a>-->
+        <!--<a href="/YongYuan_resume.pdf">简历</a>-->
+        <a class="" href="/blog/">博客</a>
+        <!--<a href="/books/">书单</a>
+		<a href="/timeline/">时间线</a>-->
+        <a href="https://github.com/str818">Github</a>
+      </nav>
+      <div class="pull-right right logo">
+        <!--<div class="name">
+          <a href="/">Yong Yuan</a><br />
+          <small>
+            <em>
+              
+                <a href="/">developer</a>
+              
+            </em>
+          </small>
+        </div>-->
+        <a href="/"><img class="avatar" src="/images/str818.jpg" alt="My profile picture" /></a>
+      </div>
+      <div class="clear"></div>
+    </header>
+    <div class="clear"></div>
+  </div>
+
+  <link rel="stylesheet" href="../css/blog.css">
+
+
+
+<div id="container">
+<article>
+<div class="inner">
+<div class = "post-header">
+  <h1>
+    【LeetCode】2_Add Two Number
+  </h1>
+  <ul class="meta">
+  	<i class="fa fa-calendar"></i>
+  	2018年04月06日
+  	<i class="space"></i>
+  	<i class="fa fa-archive"></i>
+  	<a class="tag" href="http://localhost:5001/blog/categories.html#LeetCode">LeetCode</a>
+  	<i class="space"></i>
+  	<i class="fa fa-tags"></i>
+  	
+  	    <a class="tag" href="http://localhost:5001/tag/#LeetCode">LeetCode</a>
+  	    <i class="space"></i>
+  	
+  	<i class="space"></i> 字数:6721
+  </ul>
+</div>
+</div>
+
+  <div class="post">
+        <div id="content">
+          <div class ="sidebox">
+              <div class ="sidebar">
+              <div class="toc"></div>
+              </div>
+          </div>
+  	   <h1 id="问题描述">问题描述</h1>
+
+<p>用两个非空的链表表示两个非负数，两个非负数都是反序存储在链表中的，每个结点只包含一位数。
+将两个非负数相加，并以链表的形式返回结果。</p>
+
+<p>假定：两个数不会是以0开头，除了0本身</p>
+
+<h3 id="输入">输入</h3>
+<blockquote>
+  <p>(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</p>
+</blockquote>
+
+<h3 id="输出">输出</h3>
+
+<blockquote>
+  <p>7 -&gt; 0 -&gt; 8</p>
+</blockquote>
+
+<h3 id="解释">解释</h3>
+
+<blockquote>
+  <p>342 + 465 = 807</p>
+</blockquote>
+
+<h1 id="我的解法">我的解法</h1>
+
+<p>由于在每个链表中数值是翻转的，也就是说在链表的第一个结点是个位数，往后的结点依次类推：十位，百位…
+那么可以很容易的想到用加法的规律，将两个链表从个位开始进行相加，依次向后进位。</p>
+
+<p>关键的地方就是需要将所有的情况考虑周全，比如若列表一的长度比列表二长（l1=[0,1,2] l2=[0,1]），最后一位存在进位的情况（l1=[9,9] l2=[1]）。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">//结点类</span>
+<span class="c1">//class ListNode{</span>
+<span class="c1">//	int val;</span>
+<span class="c1">//	ListNode next;</span>
+<span class="c1">//	ListNode(int x){ val =x;}</span>
+<span class="c1">//}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">ListNode</span> <span class="nf">addTwoNumbers</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">l1</span><span class="o">,</span> <span class="n">ListNode</span> <span class="n">l2</span><span class="o">)</span> <span class="o">{</span>
+	<span class="n">ListNode</span> <span class="n">curr1</span> <span class="o">=</span> <span class="n">l1</span><span class="o">;</span>
+	<span class="n">ListNode</span> <span class="n">curr2</span> <span class="o">=</span> <span class="n">l2</span><span class="o">;</span>
+	<span class="kt">int</span> <span class="n">next</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+		
+	<span class="n">ListNode</span> <span class="n">ans</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+		
+	<span class="n">ans</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="o">(</span><span class="n">curr1</span><span class="o">.</span><span class="na">val</span> <span class="o">+</span> <span class="n">curr2</span><span class="o">.</span><span class="na">val</span><span class="o">);</span>
+	<span class="k">if</span><span class="o">(</span><span class="n">ans</span><span class="o">.</span><span class="na">val</span><span class="o">&gt;</span><span class="mi">9</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">next</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+		<span class="n">ans</span><span class="o">.</span><span class="na">val</span> <span class="o">%=</span> <span class="mi">10</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="n">curr1</span> <span class="o">=</span> <span class="n">curr1</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+	<span class="n">curr2</span> <span class="o">=</span> <span class="n">curr2</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+	<span class="n">ListNode</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">ans</span><span class="o">;</span>
+	<span class="k">while</span><span class="o">(</span><span class="n">curr1</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">curr2</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			
+		<span class="k">if</span><span class="o">(</span><span class="n">curr1</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">curr</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="o">(</span><span class="n">curr2</span><span class="o">.</span><span class="na">val</span><span class="o">+</span><span class="n">next</span><span class="o">);</span>
+			<span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+			<span class="n">curr2</span> <span class="o">=</span> <span class="n">curr2</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+			<span class="k">if</span><span class="o">(</span><span class="n">curr</span><span class="o">.</span><span class="na">val</span><span class="o">&gt;</span><span class="mi">9</span><span class="o">)</span> <span class="o">{</span>
+				<span class="n">next</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+				<span class="n">curr</span><span class="o">.</span><span class="na">val</span> <span class="o">%=</span> <span class="mi">10</span><span class="o">;</span>
+			<span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+				<span class="n">next</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+			<span class="o">}</span>
+			<span class="k">continue</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">curr2</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">curr</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="o">(</span><span class="n">curr1</span><span class="o">.</span><span class="na">val</span><span class="o">+</span><span class="n">next</span><span class="o">);</span>
+			<span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+			<span class="n">curr1</span> <span class="o">=</span> <span class="n">curr1</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+			<span class="k">if</span><span class="o">(</span><span class="n">curr</span><span class="o">.</span><span class="na">val</span><span class="o">&gt;</span><span class="mi">9</span><span class="o">)</span> <span class="o">{</span>
+				<span class="n">next</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+				<span class="n">curr</span><span class="o">.</span><span class="na">val</span> <span class="o">%=</span> <span class="mi">10</span><span class="o">;</span>
+			<span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+				<span class="n">next</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+			<span class="o">}</span>
+			<span class="k">continue</span><span class="o">;</span>
+		<span class="o">}</span>
+			
+		<span class="n">curr</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="o">(</span><span class="n">curr1</span><span class="o">.</span><span class="na">val</span> <span class="o">+</span> <span class="n">curr2</span><span class="o">.</span><span class="na">val</span> <span class="o">+</span> <span class="n">next</span><span class="o">);</span>
+		<span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+			
+		<span class="k">if</span><span class="o">(</span><span class="n">curr</span><span class="o">.</span><span class="na">val</span><span class="o">&gt;</span><span class="mi">9</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">next</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+			<span class="n">curr</span><span class="o">.</span><span class="na">val</span> <span class="o">%=</span> <span class="mi">10</span><span class="o">;</span>
+		<span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+			<span class="n">next</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+		<span class="o">}</span>
+			
+		<span class="n">curr1</span> <span class="o">=</span> <span class="n">curr1</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+		<span class="n">curr2</span> <span class="o">=</span> <span class="n">curr2</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+	<span class="o">}</span>
+		
+	<span class="k">if</span><span class="o">(</span><span class="n">next</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">curr</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+	<span class="o">}</span>
+	<span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h1 id="精简写法">精简写法</h1>
+
+<p>这一思路与我的思路相同，但是写的十分精简，应该好好学习学习，时间复杂度O(max(m,n))，空间复杂度O(max(m,n))。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">addTwoNumbers</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">l1</span><span class="o">,</span> <span class="n">ListNode</span> <span class="n">l2</span><span class="o">)</span> <span class="o">{</span>
+	<span class="n">ListNode</span> <span class="n">dummyHead</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+	<span class="n">ListNode</span> <span class="n">p</span> <span class="o">=</span> <span class="n">l1</span><span class="o">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">l2</span><span class="o">,</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">dummyHead</span><span class="o">;</span>
+	<span class="kt">int</span> <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	<span class="k">while</span> <span class="o">(</span><span class="n">p</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">q</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+		<span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="o">(</span><span class="n">p</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="n">p</span><span class="o">.</span><span class="na">val</span> <span class="o">:</span> <span class="mi">0</span><span class="o">;</span>
+		<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="o">(</span><span class="n">q</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="n">q</span><span class="o">.</span><span class="na">val</span> <span class="o">:</span> <span class="mi">0</span><span class="o">;</span>
+		<span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">carry</span> <span class="o">+</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">;</span>
+		<span class="n">carry</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">/</span> <span class="mi">10</span><span class="o">;</span>
+		<span class="n">curr</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="o">(</span><span class="n">sum</span> <span class="o">%</span> <span class="mi">10</span><span class="o">);</span>
+		<span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">p</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">q</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">q</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="k">if</span> <span class="o">(</span><span class="n">carry</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">curr</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="o">(</span><span class="n">carry</span><span class="o">);</span>
+	<span class="o">}</span>
+	<span class="k">return</span> <span class="n">dummyHead</span><span class="o">.</span><span class="na">next</span><span class="o">;</span><span class="c1">//头结点是零结点，把第二个结点作为头结点返回</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+  	</div>
+	</div>
+</article>
+
+<!--翻页功能-->
+<section class="inner">
+<ul class="pager">
+    
+    <li class="previous">
+       <a href="/blog/leetcode-1-two-sum.html">←【LeetCode】1_Two Sum</a>
+    </li>
+    
+    
+ </ul>
+</section>
+
+<!--评论功能-->
+<section class="comments inner duoshuo">
+<!-- Disqus Comment BEGIN -->
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'yongyuan'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+<!-- Disqus Comment END -->
+
+</section>
+</div>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    <!--displayMath: [['$$','$$'], ['\[','\]']],-->
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+
+
+  <!--<div class="separator"></div>-->
+
+  <footer>
+    <div  style="border-bottom: 1px solid #eee"></div>
+    <!--
+	<p class="linkings">
+        Friend: Lichao</a>&nbsp&nbsp&nbsp&nbsp<a href="https://yihui.name/cn/">Yihui</a>&nbsp&nbsp&nbsp&nbsp<a href="http://zhangxuezhi.com/">Xuezhi</a>&nbsp&nbsp&nbsp&nbsp<a href="http://www.52ml.net/">52ml</a>&nbsp&nbsp&nbsp&nbsp<a href="http://caoyaqiang.com/">cyq</a>&nbsp&nbsp&nbsp&nbsp<a href="http://personal.ee.surrey.ac.uk/Personal/R.Hu/">Rui Hu</a>&nbsp&nbsp&nbsp&nbsp<a href="http://www.pyimagesearch.com/">pyimagesearch</a>&nbsp&nbsp&nbsp&nbsp<a href="http://bean.logdown.com/">bean</a>&nbsp&nbsp&nbsp&nbsp<a href="http://ml.memect.com/">ml dairy</a>&nbsp&nbsp&nbsp&nbsp<a href="http://rogerioferis.com/VisualRecognitionAndSearch2014/Resources.html/">Resources</a>
+    </p>
+	-->
+    <!--p class="linkings">
+        Utils: <a href="http://rogerioferis.com/VisualRecognitionAndSearch2014/Resources.html">rogerioferis</a>&nbsp&nbsp&nbsp&nbsp<a href="http://caffe.berkeleyvision.org/">Caffe</a>&nbsp&nbsp&nbsp&nbsp<a href="http://scikit-learn.org/stable/index.html">scikit-learn</a>&nbsp&nbsp&nbsp&nbsp<a href="http://www.astroml.org/index.html">AstroML</a></a>&nbsp&nbsp&nbsp&nbsp<a href="http://scikit-image.org/">scikit-image</a></a>&nbsp&nbsp&nbsp&nbsp<a href="http://gitxiv.com/">GitXiv</a>
+    </p-->
+    <p>
+      Made with <a href="http://jekyllrb.com/">Jekyll</a>,
+      hosted on <a href="https://github.com/willard-yuan/willard-yuan.github.io">Github Pages</a>. Inspired by <a href="http://yongyuan.name">Willard</a>.
+    </p>
+    <!--
+	<p>
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Attribution-NonCommercial-ShareAlike 4.0 International</a> 2013-2017
+    </p>
+	-->
+    <!--ul class="links">
+      <li>
+        <a href="https://github.com/willard-yuan" title="See my code on GitHub">
+          <i class="icon-github"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/intent/follow?screen_name=yongyuan001" title="Follow me on Twitter">
+          <i class="icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/in/sebastiensaunier" title="Connect with me on LinkedIn">
+          <i class="icon-linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://plus.google.com/+SebastienSaunier?rel=author" title="I need this link for authorship reasons">
+          <i class="icon-google-plus"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://pinboard.in/u:ssaunier" title="Browse my bookmarks about Programming">
+          <i class="icon-bookmarks"></i>
+        </a>
+      </li>
+      <li>
+        <a href="/feed.xml" title="Subscribe to my blog with RSS">
+          <i class="icon-feed"></i>
+        </a>
+      </li>
+    </ul-->
+  </footer>
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+</body>
+</html>
