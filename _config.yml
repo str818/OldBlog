@@ -29,3 +29,8 @@ syntax_highlighter: rouge
 gems:
   - jekyll-sitemap
 port: 5001
+
+leancloud:
+    enable: true
+    app_id: kq88D5gn852lDm4AI1HUhX3g-gzGzoHsz
+    app_key: B4NceidsrrqFqq8lKgUHr4J7

@@ -30,7 +30,6 @@ h6,
 
 /*博客中的标题*/
 article h1 {
-  font-family:"Linux Libertine",Baskerville,"Liberation Serif","Kaiti SC",KaiTi,STKaiti,serif;
   margin-bottom: 8px;
   line-height: 120%;
   text-align: center !important;
@@ -46,6 +45,20 @@ article h1 {
   padding: 4px 8px;
   text-align: center !important;
 }
+
+.post-meta-divider {
+  font-size: $small-font-size;
+  color: $grey-color;
+}
+.post-meta-item-text {
+  font-size: $small-font-size;
+  color: $grey-color;
+}
+.leancloud-visitors-count{
+  font-size: $small-font-size;
+  color: $grey-color;
+}
+
 
 p{
   text-align: justify;
