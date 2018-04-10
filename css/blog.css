@@ -1,9 +1,13 @@
 @import url("font.css");*,*:after,*:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding:0;margin:0}.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}
+
+/*article外部引用内容 与 id fancy 的字体与行高*/
 .fancy, article {
   /*font-family: 'lucida grande', 'lucida sans unicode', lucida, 'Helvetica Neue', helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;*/
   font-family: Georgia, "Linux Libertine",-apple-system,"Helvetica Neue",Helvetica,"Nimbus Sans L",Arial,"Liberation Sans","PingFang SC","Hiragino Sans GB","Source Han Sans CN","Source Han Sans SC","Microsoft YaHei","Wenquanyi Micro Hei","WenQuanYi Zen Hei","ST Heiti",SimHei,"WenQuanYi Zen Hei Sharp",sans-serif;
   line-height: 170%;
 }
+
+/*section段落的字体与行高*/
 section {
   font-family: "Linux Libertine",-apple-system,"Helvetica Neue",Helvetica,"Nimbus Sans L",Arial,"Liberation Sans","PingFang SC","Hiragino Sans GB","Source Han Sans CN","Source Han Sans SC","Microsoft YaHei","Wenquanyi Micro Hei","WenQuanYi Zen Hei","ST Heiti",SimHei,"WenQuanYi Zen Hei Sharp",sans-serif;
   line-height: 170%;
@@ -24,14 +28,18 @@ h6,
   margin: 5em 0 1em 0em;
 }
 
+/*博客中的标题*/
 article h1 {
+  font-family:"Linux Libertine",Baskerville,"Liberation Serif","Kaiti SC",KaiTi,STKaiti,serif;
   margin-bottom: 8px;
   line-height: 120%;
   text-align: center !important;
 }
 
+/*博客中日期、字数、*/
 .meta {
-  color: #666;
+  font-family: "Kaiti SC", STKaiti, "AR PL UKai CN", "AR PL UKai HK", "AR PL UKai TW", "AR PL UKai TW MBE", "AR PL KaitiM GB", KaiTi, KaiTi_GB2312, "TW-Kai", serif; 
+  color: #000000;
   /*border-top: 1px solid #ccc;*/
   font-size: 0.9rem;
   margin-top: 4px;
@@ -61,7 +69,7 @@ h2 {
 }
 
 h2:before {
-    content: "#";
+    content: "";
     color: #48C9B0;
     display: inline-block;
     float: left;
@@ -500,7 +508,7 @@ img[alt=drawing] { width: 60%; }
 /*添加博文上一篇下一篇功能*/
 .pager {
     padding-left: 0;
-    margin: 20px 0;
+    margin: 10px 0;
     list-style: none;
     text-align: center;
 }
