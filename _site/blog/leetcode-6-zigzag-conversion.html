@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="aexITLS38FdIRzwj25OVWxm87rpa9l-UV0URTyC9cTs" />
   <title>
-    Windows系统下安装Jekyll
+    【LeetCode】6_ZigZag Conversion
     
   </title>
   <link rel="stylesheet" href="../css/site.css">
@@ -63,26 +63,26 @@
 <div class="inner">
 <div class = "post-header">
   <h1>
-    Windows系统下安装Jekyll
+    【LeetCode】6_ZigZag Conversion
   </h1>
   <ul class="meta">
   	<i class="fa fa-calendar"></i>
-  	2018年03月01日
+  	2018年04月10日
 	&nbsp;&nbsp;
   	<i class="fa fa-archive"></i>
-  	<a class="tag" href="http://localhost:5001/blog/categories.html#Jekyll">Jekyll</a>
+  	<a class="tag" href="http://localhost:5001/blog/categories.html#LeetCode">LeetCode</a>
   	<i class="space"></i>
 	&nbsp;&nbsp;
   	<i class="fa fa-tags"></i>
   	
-  	    <a class="tag" href="http://localhost:5001/tag/#Jekyll">Jekyll</a>
+  	    <a class="tag" href="http://localhost:5001/tag/#LeetCode">LeetCode</a>
   	    <i class="space"></i>
   	
 	&nbsp;&nbsp;
-  	<i class="space"></i> 字数:969
+  	<i class="space"></i> 字数:2178
 	<i class="space"></i>
 	
-       <span id="/blog/jekyll-install.html" class="leancloud_visitors" data-flag-title="Windows系统下安装Jekyll">
+       <span id="/blog/leetcode-6-zigzag-conversion.html" class="leancloud_visitors" data-flag-title="【LeetCode】6_ZigZag Conversion">
         <span class="post-meta-divider">|</span>
         <span class="post-meta-item-text"> Hits:  </span>
         <span class="leancloud-visitors-count"></span>
@@ -100,43 +100,46 @@
               <div class="toc"></div>
               </div>
           </div>
-  	   <p>　　Jekyll是一个简单的博客形态的静态站点生成机器，我们能通过Jekyll方便的搭建并维护一个博客。     <br />
-　　除此之外，Jekyll也可以运行在GitHub Page上，也就是说，你可以使用GitHub的服务来搭建你的项目页面、博客或者网站，而且是完全免费的。</p>
+  	   <h1 id="问题描述">问题描述</h1>
 
-<p>　　下面来看一下如何在Windows系统下正确安装Jekyll：</p>
+<p>将一个字符串摆放成Z形状，比如字符串”PAYPALISHIRING”摆放成3行的Z形状为：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>P   A   H   N
+A P L S I I G
+Y   I   R
+</code></pre></div></div>
+<p>按行可以读成字符串”PAHNAPLSIIGYIR”</p>
 
-<h3 id="1安装ruby">1.安装Ruby</h3>
-<p><a href="https://rubyinstaller.org/downloads/">下载链接</a>    <br />
-版本的差异可能会出现一些不确定的问题，笔者在这方面吃过亏，这里建议下载2.3.3版本。
-<img src="\images\posts\2018\0301\RubyInstall.png" alt="Ruby安装" height="60%" width="60%" />
-	安装过程一路”Next”，需要注意记得勾选下图中的选项。
-<img src="\images\posts\2018\0301\RubyInstall_1.png" alt="Ruby安装选项" height="60%" width="60%" />
-	安装完成后输入”ruby -v”，显示版本号表明安装成功。
-<img src="\images\posts\2018\0301\RubyInstall_2.png" alt="Ruby安装成功" height="60%" width="60%" /></p>
+<p>本题需要将一个字符串摆放成n行的Z形状，并输出按行读的字符串。</p>
 
-<h3 id="2安装devkit">2.安装DevKit</h3>
-<p><a href="https://rubyinstaller.org/downloads/">下载链接</a>，地址与Ruby下载地址相同，注意要安装与Ruby版本相对应的DevKit
-<img src="\images\posts\2018\0301\DevKitInstall.png" alt="DevKit下载" height="60%" width="60%" /></p>
+<h1 id="我的解法">我的解法</h1>
 
-<p>　　进入到DevKit的安装目录，在命令行窗口输入下列命令：  <br />
-　　<code class="highlighter-rouge">ruby dk.rb init</code>  <br />
-　　<code class="highlighter-rouge">ruby dk.rb install</code>  <br />
-<img src="\images\posts\2018\0301\DevKitInstall_1.png" alt="DevKit配置" height="60%" width="60%" /></p>
+<p>这是一道找规律的题目，先来分别看一下2、3与4行的形状，通过对比这些形状找出规律。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0     6
+1   5 7         0   4   8        
+2 4   8         1 3 5 7 9        0 2 4
+3     9         2   6            1 3 5
+</code></pre></div></div>
+<p>以行数为4的形状为例，可以看出在行数为4的形状中，第1列与第4列的位置相差2×n-2(n=4)，我们知道第1列的字符序号为0到n-1，那么可以很容易的推断出第4列的字符序号，
+但是第2列与第3列分别还有一个字符，需要找到一个规律计算出这两个字符的序号。仔细观察可以发现第3列元素的序号是7-2×1(行数)，而第
+2列元素的需要为8-2×2(行数)。这样通过第一列的字符序号就能推断出对应行所有的元素序号。</p>
 
-<h3 id="3安装jekyll">3.安装Jekyll</h3>
-<p>首先检查是否安装gem:<code class="highlighter-rouge">gem -v</code>，输入<code class="highlighter-rouge">gem install jekyll</code>安装Jekyll（科学上网）。</p>
-
-<h3 id="4启动jekyll">4.启动Jekyll</h3>
-<p><code class="highlighter-rouge">jekyll new myblog</code>  <br />
-<code class="highlighter-rouge">cd myblog</code>  <br />
-<code class="highlighter-rouge">jekyll serve</code>  <br />
-启动过程可能出现下图中的错误信息：
-<img src="\images\posts\2018\0301\JekyllError.png" alt="Jekyll启动Error" />
-这是由于Jekyll启动需要的默认端口4000已被占用，只需要打开_config.yml 在最后加上一行 port:5002 (其它端口也可)问题解决</p>
-
-<h3 id="参考">参考</h3>
-<p>[1] <a href="http://jekyllcn.com/">Jekyll官方文档</a>  <br />
-[2] <a href="http://blog.csdn.net/itmyhome1990/article/details/50443826">升级Jekyll 3.0</a></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">convert</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">,</span><span class="kt">int</span> <span class="n">numRows</span><span class="o">)</span> <span class="o">{</span>
+	<span class="k">if</span><span class="o">(</span><span class="n">numRows</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">numRows</span><span class="o">)</span> <span class="k">return</span> <span class="n">s</span><span class="o">;</span>
+	<span class="n">StringBuilder</span> <span class="n">ans</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
+	<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numRows</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+		<span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+		<span class="k">while</span><span class="o">(</span><span class="n">index</span><span class="o">&lt;</span><span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">())</span> <span class="o">{</span>
+			<span class="n">ans</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">));</span>
+			<span class="n">index</span> <span class="o">+=</span> <span class="mi">2</span><span class="o">*</span><span class="n">numRows</span><span class="o">-</span><span class="mi">2</span><span class="o">;</span>
+			<span class="c1">//除了首尾两行其余的行均需要计算中间的序号</span>
+			<span class="k">if</span><span class="o">(</span><span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">numRows</span><span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">index</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">&lt;</span><span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">())</span> <span class="o">{</span>
+				<span class="n">ans</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">));</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+	<span class="k">return</span> <span class="n">ans</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
   	</div>
 	</div>
@@ -147,13 +150,9 @@
 <ul class="pager">
     
     <li class="previous">
-       <a href="/blog/markdown.html">¤上一篇¤</a>
+       <a href="/blog/leetcode-5-longest-palindromic-substring.html">¤上一篇¤</a>
     </li>
     
-    
-    <li class="next">
-    	<a href="/blog/patent-infringement-judgment.html">¤下一篇¤</a>
-    </li>
     
  </ul>
 </section>

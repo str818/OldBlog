@@ -7,6 +7,54 @@
     <atom:link href="http://localhost:5001/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>【LeetCode】6_ZigZag Conversion</title>
+        <description>&lt;h1 id=&quot;问题描述&quot;&gt;问题描述&lt;/h1&gt;
+
+&lt;p&gt;将一个字符串摆放成Z形状，比如字符串”PAYPALISHIRING”摆放成3行的Z形状为：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;P   A   H   N
+A P L S I I G
+Y   I   R
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;按行可以读成字符串”PAHNAPLSIIGYIR”&lt;/p&gt;
+
+&lt;p&gt;本题需要将一个字符串摆放成n行的Z形状，并输出按行读的字符串。&lt;/p&gt;
+
+&lt;h1 id=&quot;我的解法&quot;&gt;我的解法&lt;/h1&gt;
+
+&lt;p&gt;这是一道找规律的题目，先来分别看一下2、3与4行的形状，通过对比这些形状找出规律。&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;0     6
+1   5 7         0   4   8        
+2 4   8         1 3 5 7 9        0 2 4
+3     9         2   6            1 3 5
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;以行数为4的形状为例，可以看出在行数为4的形状中，第1列与第4列的位置相差2×n-2(n=4)，我们知道第1列的字符序号为0到n-1，那么可以很容易的推断出第4列的字符序号，
+但是第2列与第3列分别还有一个字符，需要找到一个规律计算出这两个字符的序号。仔细观察可以发现第3列元素的序号是7-2×1(行数)，而第
+2列元素的需要为8-2×2(行数)。这样通过第一列的字符序号就能推断出对应行所有的元素序号。&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;convert&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numRows&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numRows&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numRows&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;StringBuilder&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;StringBuilder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numRows&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;charAt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+			&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numRows&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+			&lt;span class=&quot;c1&quot;&gt;//除了首尾两行其余的行均需要计算中间的序号&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numRows&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+				&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;charAt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+			&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Tue, 10 Apr 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:5001//blog/leetcode-6-zigzag-conversion.html</link>
+        <guid isPermaLink="true">http://localhost:5001//blog/leetcode-6-zigzag-conversion.html</guid>
+      </item>
+    
+      <item>
         <title>【LeetCode】5_Longest Palindromic Substring</title>
         <description>&lt;h1 id=&quot;问题描述&quot;&gt;问题描述&lt;/h1&gt;
 
@@ -865,34 +913,6 @@ A=\begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 1 \\ \end{bmatrix}\quad \rightarrow
         <pubDate>Mon, 19 Mar 2018 00:00:00 +0800</pubDate>
         <link>http://localhost:5001//blog/jekyll-mathematical-formula.html</link>
         <guid isPermaLink="true">http://localhost:5001//blog/jekyll-mathematical-formula.html</guid>
-      </item>
-    
-      <item>
-        <title>深度学习笔记</title>
-        <description>&lt;p&gt;AI系统需要具备自己获取知识的能力，即从原始数据中提取模式的能力。这种能力被称为机器学习（machine learning)。&lt;/p&gt;
-
-&lt;p&gt;深度学习（deep learning）通过其他较简单的标识来表达复杂表示，解决了表示学习中的核心问题。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;专利保护范围以权利要求书记载的内容为准，而不是由专利产品确定的&lt;/li&gt;
-  &lt;li&gt;在上述前提下，允许利用说明书和附图对权利要求的保护范围作出一定的修正，这种修正是以专利权人对自己的发明创造作出具体说明为依据。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;一项专利权的权利要求是由一个个具体的技术特征组成的。在一项发明专利中，其权利要求书中至少包含一项独立权利要求，还可以包括从属权利要求。由于独立权利要求是构成一项发明创造必不可少的必要技术特征组成的，
-它的保护范围最大，所以&lt;strong&gt;专利权的保护范围首先是由独立权利要求确定的&lt;/strong&gt;。&lt;/p&gt;
-
-&lt;p&gt;如果缺少了某个技术特征时，会使方案不完整，或者行不通，那该技术特征就是&lt;strong&gt;必要技术特征&lt;/strong&gt;。&lt;/p&gt;
-
-&lt;p&gt;一般来说，在具体进行专利侵权判定时，应当结合以下几个主要原则加以运用：&lt;/p&gt;
-
-&lt;h4 id=&quot;一-全面覆盖原则&quot;&gt;一 全面覆盖原则&lt;/h4&gt;
-&lt;h3 id=&quot;参考&quot;&gt;参考&lt;/h3&gt;
-&lt;p&gt;[1] &lt;a href=&quot;http://jekyllcn.com/&quot;&gt;Jekyll官方文档&lt;/a&gt;  &lt;br /&gt;
-[2] &lt;a href=&quot;http://blog.csdn.net/itmyhome1990/article/details/50443826&quot;&gt;升级Jekyll 3.0&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sat, 03 Mar 2018 00:00:00 +0800</pubDate>
-        <link>http://localhost:5001//blog/Deep-Learning-Notes-1.html</link>
-        <guid isPermaLink="true">http://localhost:5001//blog/Deep-Learning-Notes-1.html</guid>
       </item>
     
   </channel>
