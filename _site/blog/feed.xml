@@ -111,6 +111,95 @@ O(1)&lt;O(logn)&lt;O(n)&lt;O(nlogn)&lt;O(n^2)&lt;O(n^3)&lt;O(2^n)&lt;O(n!)&lt;O(
       </item>
     
       <item>
+        <title>【LeetCode】7_Reverse Integer</title>
+        <description>&lt;h1 id=&quot;问题描述&quot;&gt;问题描述&lt;/h1&gt;
+
+&lt;p&gt;将一个32bit的带符号整数反转，假定如果超出32bit则返回0&lt;/p&gt;
+
+&lt;h3 id=&quot;输入&quot;&gt;输入&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;123&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;-123&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;120&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;输出&quot;&gt;输出&lt;/h1&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;321&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;-321&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;21&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;我的解法&quot;&gt;我的解法&lt;/h1&gt;
+
+&lt;p&gt;将该整数转化成一个字符串，用StringBulider的内置方法反转字符串，强制转化为整型，由于整型是32bit，用异常处理机制判断是否溢出。&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;reverse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;StringBuilder&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;StringBuilder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;			
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;charAt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)!=&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'-'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;insert&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'+'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;		
+	&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;StringBuilder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;substring&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;reverse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;parseInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;charAt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NumberFormatException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;解法一&quot;&gt;解法一&lt;/h1&gt;
+
+&lt;p&gt;基本操作&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;reverse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;newAns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;newAns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;newAns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//判断是否溢出&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newAns&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;	
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;解法二&quot;&gt;解法二&lt;/h1&gt;
+
+&lt;p&gt;用空间更大的long存储整数&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;reverse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;//if(ans &amp;lt; Integer.MIN_VALUE || ans &amp;gt; Integer.MAX_VALUE)&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;//	return 0;&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;//return (int)ans;&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ans&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Wed, 11 Apr 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:5001//blog/leetcode-7-reverse-integer.html</link>
+        <guid isPermaLink="true">http://localhost:5001//blog/leetcode-7-reverse-integer.html</guid>
+      </item>
+    
+      <item>
         <title>【LeetCode】6_ZigZag Conversion</title>
         <description>&lt;h1 id=&quot;问题描述&quot;&gt;问题描述&lt;/h1&gt;
 
@@ -911,95 +1000,6 @@ c_3\begin{bmatrix} 0 \\ 0\\ 1\\ \end{bmatrix}\quad=
         <pubDate>Fri, 23 Mar 2018 00:00:00 +0800</pubDate>
         <link>http://localhost:5001//blog/linear-algebra-MIT-9.html</link>
         <guid isPermaLink="true">http://localhost:5001//blog/linear-algebra-MIT-9.html</guid>
-      </item>
-    
-      <item>
-        <title>线代笔记——第8课 求解Ax=b:可解性与结构</title>
-        <description>&lt;h3 id=&quot;一可解的条件solvability-conditions-on-b&quot;&gt;一、可解的条件（Solvability conditions on b）&lt;/h3&gt;
-&lt;p&gt;　　取
-&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-\boldsymbol{A} = \begin{bmatrix} 1 &amp; 2 &amp; 2 &amp; 2\\ 2 &amp; 4 &amp; 6 &amp; 8\\ 3 &amp; 6 &amp; 8 &amp; 10\\ \end{bmatrix}\quad %]]&gt;&lt;/script&gt;
-，则方程为
-&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-\begin{bmatrix}	1 &amp; 2 &amp; 2 &amp; 2\\ 2 &amp; 4 &amp; 6 &amp; 8\\ 3 &amp; 6 &amp; 8 &amp; 10\\ \end{bmatrix}\quad
-\begin{bmatrix}	x_1\\ x_2\\ x_3\\ x_4\\ \end{bmatrix}\quad
-= \begin{bmatrix} b_1\\ b_2\\ b_3\\ \end{bmatrix}\quad %]]&gt;&lt;/script&gt;
-。&lt;/p&gt;
-
-&lt;p&gt;　　矩阵A的第三行为第一行和第二行的和，因此&lt;script type=&quot;math/tex&quot;&gt;Ax=b&lt;/script&gt;中b的第3个分量也要等于其第1和第2两个分量的和。
-若b不满足&lt;script type=&quot;math/tex&quot;&gt;b_3=b_1+b_2&lt;/script&gt;则方程组无解。&lt;/p&gt;
-
-&lt;p&gt;　　检验&lt;script type=&quot;math/tex&quot;&gt;Ax=b&lt;/script&gt;是否可解的方法是对増广矩阵进行消元。如果矩阵A的行被完全消去的话，则对应的b的分量也要得0.在本例中，矩阵A的第三行被消去：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{bmatrix}	1 &amp; 2 &amp; 2 &amp; 2 &amp; b_1\\ 2 &amp; 4 &amp; 6 &amp; 8 &amp; b_2\\ 3 &amp; 6 &amp; 8 &amp; 10 &amp; b_3\\ \end{bmatrix}\quad
-\rightarrow\dots\rightarrow
-\begin{bmatrix}	1 &amp; 2 &amp; 2 &amp; 2 &amp; b_1\\ 0 &amp; 0 &amp; 2 &amp; 4 &amp; b_2-2b_1\\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; b_3-b_2-b_1\\ \end{bmatrix}\quad %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;　　如果&lt;script type=&quot;math/tex&quot;&gt;Ax=b&lt;/script&gt;有解，则&lt;script type=&quot;math/tex&quot;&gt;b_3-b_1-b_2=0&lt;/script&gt;。在本例中另&lt;script type=&quot;math/tex&quot;&gt;b=\begin{bmatrix} 1\\ 5\\ 6\\ \end{bmatrix}\quad&lt;/script&gt;。&lt;/p&gt;
-
-&lt;p&gt;　　只有当b处于矩阵的列空间C(A)之中时，方程才有解。本课推导出矩阵A的行向量若经过线性组合成为了零向量，则对应的b经同样的线性组合后也要等于0，
-因此看起来有了两条关于b的限制条件，但实际上这两点是等价的。&lt;/p&gt;
-
-&lt;h3 id=&quot;二通解complete-solution&quot;&gt;二、通解（Complete solution）&lt;/h3&gt;
-
-&lt;p&gt;　　为求得&lt;script type=&quot;math/tex&quot;&gt;Ax=b&lt;/script&gt;的所有解，我们首先检验方程是否可解，然后找到一个特解。将特解和矩阵零空间的向量相加即为方程的通解。&lt;/p&gt;
-
-&lt;h3 id=&quot;三特解a-particular-solution&quot;&gt;三、特解（A particular solution）&lt;/h3&gt;
-
-&lt;p&gt;　　求&lt;script type=&quot;math/tex&quot;&gt;Ax=b&lt;/script&gt;特解的方法是将自由变量均赋值为0，求解其主变量。&lt;/p&gt;
-
-&lt;p&gt;　　本例中，令&lt;script type=&quot;math/tex&quot;&gt;x_2=x_4=0&lt;/script&gt;得到方程组：
-	&lt;script type=&quot;math/tex&quot;&gt;x_1+2x_3=1&lt;/script&gt;　　&lt;script type=&quot;math/tex&quot;&gt;2x_3 = 3&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;　　可解得&lt;script type=&quot;math/tex&quot;&gt;x_3=3/2,x_1=-2&lt;/script&gt;,因此特解为&lt;script type=&quot;math/tex&quot;&gt;x_p=\begin{bmatrix} -2\\ 0\\ 3/2\\ 0\\ \end{bmatrix}\quad&lt;/script&gt;。&lt;/p&gt;
-
-&lt;h3 id=&quot;四与零空间进行线性组合combined-with-nullspace&quot;&gt;四、与零空间进行线性组合（Combined with nullspace）&lt;/h3&gt;
-
-&lt;p&gt;　　&lt;script type=&quot;math/tex&quot;&gt;Ax=b&lt;/script&gt;的通解为&lt;script type=&quot;math/tex&quot;&gt;x_c = x_p + x_n&lt;/script&gt;,其中&lt;script type=&quot;math/tex&quot;&gt;x_n&lt;/script&gt;为矩阵零空间中的一般向量。将&lt;script type=&quot;math/tex&quot;&gt;Ax_p=b&lt;/script&gt;和&lt;script type=&quot;math/tex&quot;&gt;Ax_n=0&lt;/script&gt;相加可得&lt;script type=&quot;math/tex&quot;&gt;A(x_p + x_n)=b&lt;/script&gt;。&lt;/p&gt;
-
-&lt;p&gt;　　上一课得到了矩阵零空间N(A)就是其特解&lt;script type=&quot;math/tex&quot;&gt;\begin{bmatrix} -2\\ 1\\ 0\\ 0\\ \end{bmatrix}\quad&lt;/script&gt;和&lt;script type=&quot;math/tex&quot;&gt;\begin{bmatrix} 2\\ 0\\ -2\\ 1\\ \end{bmatrix}\quad&lt;/script&gt;
-的线性组合的集合。因此方程&lt;script type=&quot;math/tex&quot;&gt;Ax=\begin{bmatrix} 1\\ 5\\ 6\\ \end{bmatrix}\quad&lt;/script&gt;的通解即为：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;x_c =\begin{bmatrix} -2\\ 0\\ 3/2\\ 0\\ \end{bmatrix}\quad + c_1 \begin{bmatrix} -2\\ 1\\ 0\\ 0\\ \end{bmatrix}\quad + c_2 \begin{bmatrix} 2\\ 0\\ -2\\ 1\\ \end{bmatrix}\quad&lt;/script&gt;
-
-&lt;p&gt;其中&lt;script type=&quot;math/tex&quot;&gt;c_1&lt;/script&gt;和&lt;script type=&quot;math/tex&quot;&gt;c_2&lt;/script&gt;为任意实数。&lt;/p&gt;
-
-&lt;p&gt;　　矩阵中的零空间N(A)是&lt;script type=&quot;math/tex&quot;&gt;R^4&lt;/script&gt;空间中的二维子空间，方程的解&lt;script type=&quot;math/tex&quot;&gt;Ax=b&lt;/script&gt;构成了穿过&lt;script type=&quot;math/tex&quot;&gt;x_p&lt;/script&gt;点并和矩阵零空间平行的“平面”。但该“平面”并不是&lt;script type=&quot;math/tex&quot;&gt;R^4&lt;/script&gt;的子空间。&lt;/p&gt;
-
-&lt;h3 id=&quot;五秩rank&quot;&gt;五、秩（Rank）&lt;/h3&gt;
-
-&lt;p&gt;　　矩阵的秩等于矩阵的主元数。如果m×n矩阵的秩为r，则必有r≤m且r≤n。&lt;/p&gt;
-
-&lt;p&gt;　　满秩的情形：&lt;/p&gt;
-
-&lt;p&gt;　　* &lt;strong&gt;列满秩&lt;/strong&gt;：&lt;script type=&quot;math/tex&quot;&gt;r=n&lt;/script&gt;。每列都有主元，x的每一个分量都是主变量，没有自由变量。零空间N(A)之内只有零向量。
-方程无解或者有唯一解&lt;script type=&quot;math/tex&quot;&gt;x_p&lt;/script&gt;。&lt;/p&gt;
-
-&lt;p&gt;　　例如&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-A=\begin{bmatrix} 1 &amp; 3\\ 2 &amp; 1\\ 6 &amp; 1\\ 5 &amp; 1\\ \end{bmatrix}\quad \rightarrow 
-\begin{bmatrix} 1 &amp; 0\\ 0 &amp; 1\\ 0 &amp; 0\\ 0 &amp; 0\\ \end{bmatrix}\quad = R %]]&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;　　* &lt;strong&gt;行满秩&lt;/strong&gt;：&lt;script type=&quot;math/tex&quot;&gt;r=m&lt;/script&gt;。没行都有主元，无论b取何值，方程&lt;script type=&quot;math/tex&quot;&gt;Ax=b&lt;/script&gt;都有解。主变量r个，自由变量n-r个。&lt;/p&gt;
-
-&lt;p&gt;　　例如&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-A=\begin{bmatrix} 1 &amp; 2 &amp; 6 &amp; 5\\ 3 &amp; 1 &amp; 1 &amp; 1\\ \end{bmatrix}\quad \rightarrow 
-\begin{bmatrix} 1 &amp; 0 &amp; * &amp; *\\ 0 &amp; 1 &amp; * &amp; *\\ \end{bmatrix}\quad = R %]]&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;　　* &lt;strong&gt;满秩&lt;/strong&gt;：&lt;script type=&quot;math/tex&quot;&gt;r=m=n&lt;/script&gt;。矩阵可逆，零空间只有零向量，无论b取何值，方程&lt;script type=&quot;math/tex&quot;&gt;Ax=b&lt;/script&gt;都有唯一解。&lt;/p&gt;
-
-&lt;p&gt;　　例如&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-A=\begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 1 \\ \end{bmatrix}\quad \rightarrow 
-\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \\ \end{bmatrix}\quad = R %]]&gt;&lt;/script&gt;为单位阵。&lt;/p&gt;
-
-&lt;p&gt;　　&lt;strong&gt;秩决定了方程组解的数量。&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;\images\posts\Math\LinearAlgebra\8_1.png&quot; alt=&quot;秩&quot; height=&quot;70%&quot; width=&quot;70%&quot; /&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Mon, 19 Mar 2018 00:00:00 +0800</pubDate>
-        <link>http://localhost:5001//blog/linear-algebra-MIT-8.html</link>
-        <guid isPermaLink="true">http://localhost:5001//blog/linear-algebra-MIT-8.html</guid>
       </item>
     
   </channel>
