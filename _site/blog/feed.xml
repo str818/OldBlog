@@ -7,6 +7,110 @@
     <atom:link href="http://localhost:5001/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>时间复杂度与空间复杂度</title>
+        <description>&lt;p&gt;算法的执行效率是由内部因素与外部因素共同决定的：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;内部因素：&lt;/strong&gt;执行算法所需要的时间、所需要的内存空间&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;外部因素：&lt;/strong&gt;输入的信息、计算机硬件、编译器的质量&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;通常，我们都将外部因素忽略不计，只通过内部因素来评估算法的效率，主要由以下两个复杂度进行评估：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;时间复杂度：&lt;/strong&gt;执行算法所需要的时间，可以估算出程序对处理器的使用程度&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;空间复杂度：&lt;/strong&gt;执行算法所需要的存储空间，可以估算出程序对计算机内存的使用程度&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;时间复杂度&quot;&gt;时间复杂度&lt;/h1&gt;
+
+&lt;h2 id=&quot;1概念&quot;&gt;1、概念&lt;/h2&gt;
+
+&lt;p&gt;一个算法的执行所耗费的时间，理论上是算不出来的，只有上机运行测试才能知道。但是我们不可能也没有必要对
+每个算法都上机测试，只需要知道哪个算法花费时间多，哪个算法花费事件少就可以了。一个算法花费的时间与算法中
+语句的执行次数成正比，哪个算法中语句执行次数多，它花费的时间就多。算法中语句的执行次数称为&lt;strong&gt;时间频度&lt;/strong&gt;，记为$T(n)$。&lt;/p&gt;
+
+&lt;p&gt;在时间频度中，n为问题的规模，当n不断变化时，时间频度$T(n)$也会随之变化，但有时我们想知道其变化的规律，为此，引入&lt;strong&gt;时间复杂度&lt;/strong&gt;
+的概念。&lt;/p&gt;
+
+&lt;p&gt;什么是时间复杂度，算法中某个函数有n次基本操作重复执行，用$T(n)$表示，现在有某个辅助函数$f(n)$，使得当n趋近于无穷
+大时，$T(n)/f(n)$的极限值是不为零的常数，则称$f(n)$是$T(n)$的同数量级函数。记做$T(n)=O(f(n))$，称$O(f(n))$为算法的
+渐进时间复杂度，简称时间复杂度。通俗一点讲，所谓的时间复杂度就是找了一个同样曲线类型的函数$f(n)$来表示这个算法在n
+不断变大时的趋势。&lt;/p&gt;
+
+&lt;h2 id=&quot;2计算方法&quot;&gt;2、计算方法&lt;/h2&gt;
+
+&lt;p&gt;算法的性能分为最坏情况（最大运行次数）、平均情况（期望运行次数）与最好情况（最小运行次数），在实际中，我们考量的是最坏运行情况。&lt;/p&gt;
+
+&lt;p&gt;（1）找出算法中的基本语句&lt;/p&gt;
+
+&lt;p&gt;算法中执行次数最多的那条语句就是基本语句，通常是最内层循环的循环体。&lt;/p&gt;
+
+&lt;p&gt;（2）计算基本语句执行次数的数量级&lt;/p&gt;
+
+&lt;p&gt;只需要计算基本语句执行次数的数量级，意味着只要保证基本语句执行次数的函数中的最高次幂正确即可，可以忽略所有
+低次幂和最高次幂的系数，这样能够简化算法分析，并且使注意力集中在最重要的一点上：增长率。&lt;/p&gt;
+
+&lt;p&gt;（3）用大O记号表示算法的时间复杂度&lt;/p&gt;
+
+&lt;p&gt;将基本语句执行次数的数量级放入大O记号中。如果算法中包含嵌套的循环，则基本语句通常是最内层的循环体，如果算法中包含并列的循环，则将
+并列循环的时间复杂度相加。&lt;/p&gt;
+
+&lt;h2 id=&quot;3举例&quot;&gt;3、举例&lt;/h2&gt;
+
+&lt;p&gt;（1）时间复杂度$O(1)$&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;			&lt;span class=&quot;c1&quot;&gt;//执行一次&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;			&lt;span class=&quot;c1&quot;&gt;//执行一次&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;（2）时间复杂度$O(n)$&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++){&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;		&lt;span class=&quot;c1&quot;&gt;//执行n次&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;（3）时间复杂度$O(n^2)$&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++){&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++){&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;//执行n^2次&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++){&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++){&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;//执行(n+1)*n/2次&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;（4）时间复杂度$O(logn)$&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;		&lt;span class=&quot;c1&quot;&gt;//执行次数为x，2^x=n，即x=log2n&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;常用的时间复杂度所耗费的事件从小到大依次是：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+O(1)&lt;O(logn)&lt;O(n)&lt;O(nlogn)&lt;O(n^2)&lt;O(n^3)&lt;O(2^n)&lt;O(n!)&lt;O(n^n) %]]&gt;&lt;/script&gt;
+
+&lt;h1 id=&quot;空间复杂度&quot;&gt;空间复杂度&lt;/h1&gt;
+
+&lt;p&gt;空间复杂度是对一个算法在运行过程中临时占用存储空间大小的量度。一个算法在计算机存储器上所占用的存储空间，包括
+存储算法本身所占用的存储空间、算法的输入数据所占用的存储空间和算法在运行过程中临时占用的存储空间。&lt;/p&gt;
+
+&lt;p&gt;对于一个算法，其时间复杂度和空间复杂度往往是相互影响的。当追求一个较好的时间复杂度时，可能会使空间复杂度的性能变差，即可能导致
+占用较多的存储空间；反之，追求一个较好的空间复杂度时，可能会使时间复杂度的性能变差，即可能导致占用较长的运行时间。
+因此，设计一个算法时，要综合考虑算法的各项性能。&lt;/p&gt;
+</description>
+        <pubDate>Wed, 11 Apr 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:5001//blog/time-complexity-and-space-complexity.html</link>
+        <guid isPermaLink="true">http://localhost:5001//blog/time-complexity-and-space-complexity.html</guid>
+      </item>
+    
+      <item>
         <title>【LeetCode】6_ZigZag Conversion</title>
         <description>&lt;h1 id=&quot;问题描述&quot;&gt;问题描述&lt;/h1&gt;
 
@@ -896,23 +1000,6 @@ A=\begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 1 \\ \end{bmatrix}\quad \rightarrow
         <pubDate>Mon, 19 Mar 2018 00:00:00 +0800</pubDate>
         <link>http://localhost:5001//blog/linear-algebra-MIT-8.html</link>
         <guid isPermaLink="true">http://localhost:5001//blog/linear-algebra-MIT-8.html</guid>
-      </item>
-    
-      <item>
-        <title>基于Jekyll的博客支持LaTeX数学公式</title>
-        <description>&lt;p&gt;　　找到博客页面的模板文件(一般路径为_layouts/default.html)，在其中加入下面的代码：&lt;/p&gt;
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/script&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;　　之后将默认的Markdown引擎改为kramdown，编辑_config.yml:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;markdown:kramdown
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-</description>
-        <pubDate>Mon, 19 Mar 2018 00:00:00 +0800</pubDate>
-        <link>http://localhost:5001//blog/jekyll-mathematical-formula.html</link>
-        <guid isPermaLink="true">http://localhost:5001//blog/jekyll-mathematical-formula.html</guid>
       </item>
     
   </channel>
