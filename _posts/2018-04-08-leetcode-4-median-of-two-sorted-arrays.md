@@ -18,7 +18,7 @@ tags: LeetCode
 > nums1 = [1,2]
 > nums2 = [3,4]
 
-# 输出
+### 输出
 
 > 2.0
 
