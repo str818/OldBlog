@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【LeetCode】8_Reverse Integer
+title: 【LeetCode】8_String To Integer
 categories: [LeetCode]
 tags: LeetCode
 ---
