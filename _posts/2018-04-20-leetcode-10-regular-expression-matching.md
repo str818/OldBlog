@@ -92,7 +92,7 @@ public static boolean isMatch(String s,String p) {
 	}
 ```
 
-#解法二——动态规划
+# 解法二——动态规划
 
 dp[i][j]表示s[0-i]与p[0-j]是否匹配
 
@@ -119,7 +119,8 @@ public static boolean isMatch(String s, String p) {
 		for(int j =1;j<=m;j++) {	
 			if(p.charAt(j-1) == '*') {
 				//将X*当做0次，或者当前字符匹配X字符(*前的字符)
-				dp[i][j] = dp[i][j-2] || (s.charAt(i-1) == p.charAt(j-2) || p.charAt(j-2) == '.') && dp[i-1][j];
+				dp[i][j] = dp[i][j-2] || (s.charAt(i-1) == p.charAt(j-2) ||
+							p.charAt(j-2) == '.') && dp[i-1][j];
 			}else {
 				//当前字符完全匹配时，传递dp[i-1][j-1]的真值
 				dp[i][j] = (p.charAt(j - 1) == '.' || s.charAt(i - 1) == p.charAt(j - 1)) && dp[i-1][j-1];
