@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="aexITLS38FdIRzwj25OVWxm87rpa9l-UV0URTyC9cTs" />
   <title>
-    【LeetCode】5_Longest Palindromic Substring
+    【LeetCode】8_String To Integer
     
   </title>
   <link rel="stylesheet" href="../css/site.css">
@@ -63,11 +63,11 @@
 <div class="inner">
 <div class = "post-header">
   <h1>
-    【LeetCode】5_Longest Palindromic Substring
+    【LeetCode】8_String To Integer
   </h1>
   <ul class="meta">
   	<i class="fa fa-calendar"></i>
-  	2018年04月09日
+  	2018年04月12日
 	&nbsp;&nbsp;
   	<i class="fa fa-archive"></i>
   	<a class="tag" href="http://localhost:5001/blog/categories.html#LeetCode">LeetCode</a>
@@ -79,10 +79,10 @@
   	    <i class="space"></i>
   	
 	&nbsp;&nbsp;
-  	<i class="space"></i> 字数:4253
+  	<i class="space"></i> 字数:5310
 	<i class="space"></i>
 	
-       <span id="/blog/leetcode-5-longest-palindromic-substring.html" class="leancloud_visitors" data-flag-title="【LeetCode】5_Longest Palindromic Substring">
+       <span id="/blog/leetcode-8-string-to-integer.html" class="leancloud_visitors" data-flag-title="【LeetCode】8_String To Integer">
         <span class="post-meta-divider">|</span>
         <span class="post-meta-item-text"> Hits:  </span>
         <span class="leancloud-visitors-count"></span>
@@ -102,81 +102,84 @@
           </div>
   	   <h1 id="问题描述">问题描述</h1>
 
-<p>给出字符串s，找出s中最长回文子字符串，假定字符串s的最大长度为1000。</p>
+<p>将字符串转换为整型，类似于C++中的atoi函数</p>
 
-<h3 id="输入">输入</h3>
-<blockquote>
-  <p>babad</p>
-</blockquote>
+<p>题目表述的不是很清楚，自己归纳一下规则：</p>
 
-<blockquote>
-  <p>cbbd</p>
-</blockquote>
+<p>1、跳过字符串前面的空白字符</p>
 
-<h3 id="输出">输出</h3>
+<p>2、数字前面可能会有正负号</p>
 
-<blockquote>
-  <p>bab(aba)</p>
-</blockquote>
+<p>3、遇到非数字时结束转换并返回结果，比如输入”-12a34”返回-12</p>
 
-<blockquote>
-  <p>bb</p>
-</blockquote>
+<p>4、如果不能转换成整型，返回0</p>
+
+<p>5、若超过整型的最大范围，则返回最大或最小范围，比如输入”9999999999”返回2147483647</p>
 
 <h1 id="我的解法">我的解法</h1>
 
-<p>首先想到的肯定是暴力求解喔，判断每一个子字符串是不是回文字符串，但是这样做时间复杂度高达$O(n^3)$，肯定是不能Accepted的。</p>
+<p>难度不大，主要是需要把情况考虑周全。用long存储数字，首先判断字符串前面的空格与正负号，考虑到可能有多个符号，比如“+-456”，
+这种情况会返回0，之后，超出范围的情况返回最大或最小值。</p>
 
-<p>我的思路是，既然是找最长的，那就从最长的子字符串开始判断，一直找到最短的子字符串，在这过程中只要找到了一个回文字符串，那么这一字符串就是最长的回文字符串。</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">longestPalindrome</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span> 
-	<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
-	<span class="c1">//长度为i的回文数</span>
-	<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span> <span class="o">{</span>
-		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span><span class="o">&lt;=</span><span class="n">n</span><span class="o">-</span><span class="n">i</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
-			<span class="k">if</span><span class="o">(</span><span class="n">isPalindromic</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">j</span><span class="o">,</span> <span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="o">)))</span> 
-				<span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">j</span><span class="o">,</span> <span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">myAtoi</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+	<span class="kt">long</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	<span class="kt">int</span> <span class="n">sign</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">str</span><span class="o">.</span><span class="na">length</span><span class="o">();</span><span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+		<span class="kt">char</span> <span class="n">s</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">ans</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">sign</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">if</span><span class="o">(</span><span class="n">s</span><span class="o">==</span><span class="sc">'-'</span><span class="o">)</span> <span class="o">{</span>
+				<span class="n">sign</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+				<span class="k">continue</span><span class="o">;</span>
+			<span class="o">}</span> 
+			<span class="k">if</span><span class="o">(</span><span class="n">s</span><span class="o">==</span><span class="sc">'+'</span> <span class="o">)</span> <span class="o">{</span>
+				<span class="n">sign</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+				<span class="k">continue</span><span class="o">;</span>
+			<span class="o">}</span>
+			<span class="k">if</span><span class="o">(</span><span class="n">s</span><span class="o">==</span><span class="sc">' '</span><span class="o">)</span> <span class="k">continue</span><span class="o">;</span>
 		<span class="o">}</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">s</span><span class="o">==</span><span class="sc">'-'</span> <span class="o">||</span> <span class="n">s</span><span class="o">==</span><span class="sc">'+'</span><span class="o">)</span> <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">s</span><span class="o">&lt;=</span><span class="sc">'9'</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">&gt;=</span><span class="sc">'0'</span><span class="o">)</span> <span class="o">{</span>	
+			<span class="k">if</span><span class="o">(</span><span class="n">sign</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="n">sign</span> <span class="o">=</span><span class="mi">1</span><span class="o">;</span>
+			<span class="n">ans</span> <span class="o">=</span> <span class="n">ans</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">s</span> <span class="o">-</span> <span class="mi">48</span><span class="o">);</span> 
+			<span class="k">if</span><span class="o">(</span><span class="n">ans</span><span class="o">*</span><span class="n">sign</span> <span class="o">&gt;</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span> <span class="o">)</span> <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
+			<span class="k">if</span><span class="o">(</span><span class="n">ans</span><span class="o">*</span><span class="n">sign</span> <span class="o">&lt;</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span> <span class="o">)</span> <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span><span class="o">;</span>
+			<span class="k">continue</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="k">break</span><span class="o">;</span>
 	<span class="o">}</span>
-	<span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-<span class="o">}</span>
-<span class="c1">//判断是否是回文子串</span>
-<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isPalindromic</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-	<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
-	<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-		<span class="k">if</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">!=</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">))</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span> 
-	<span class="o">}</span>
-	<span class="k">return</span> <span class="kc">true</span><span class="o">;</span>	
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h1 id="中心扩展法">中心扩展法</h1>
-
-<p>遍历字符串的每一个字符，如果存在回文子串，那么中心是某一字符(奇数)或两个字符的空隙(偶数)，然后分两种情况向两边扩展。</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">low</span><span class="o">;</span><span class="c1">//回文子串的起始位置</span>
-<span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">maxLen</span><span class="o">;</span><span class="c1">//回文子串的最大长度</span>
-<span class="kd">public</span> <span class="n">String</span> <span class="nf">longestPalindrome</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-	<span class="kt">int</span> <span class="n">len</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
-	<span class="k">if</span><span class="o">(</span><span class="n">len</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">)</span> <span class="k">return</span> <span class="n">s</span><span class="o">;</span>
-	<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
-		<span class="n">extendPalindrome</span><span class="o">(</span><span class="n">s</span><span class="o">,</span><span class="n">i</span><span class="o">,</span><span class="n">i</span><span class="o">);</span><span class="c1">//回文子串是奇数的情况</span>
-		<span class="n">extendPalindrome</span><span class="o">(</span><span class="n">s</span><span class="o">,</span><span class="n">i</span><span class="o">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">);</span><span class="c1">//回文子串是偶数的情况</span>
-	<span class="o">}</span>
-	<span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">low</span><span class="o">,</span> <span class="n">low</span><span class="o">+</span><span class="n">maxLen</span><span class="o">);</span>
-<span class="o">}</span>
-<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">extendPalindrome</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">,</span> <span class="kt">int</span> <span class="n">j</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
-	<span class="k">while</span><span class="o">(</span><span class="n">j</span><span class="o">&gt;=</span><span class="mi">0</span><span class="o">&amp;&amp;</span><span class="n">k</span><span class="o">&lt;</span><span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">()&amp;&amp;</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">)==</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">k</span><span class="o">)){</span>
-		<span class="n">j</span><span class="o">--;</span>
-		<span class="n">k</span><span class="o">++;</span>
-	<span class="o">}</span>
-	<span class="k">if</span><span class="o">(</span><span class="n">maxLen</span><span class="o">&lt;</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">){</span>
-		<span class="n">low</span><span class="o">=</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="o">;</span>
-		<span class="n">maxLen</span><span class="o">=</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-	<span class="o">}</span>    
+	<span class="k">return</span> <span class="o">(</span><span class="kt">int</span><span class="o">)(</span><span class="n">ans</span><span class="o">*</span><span class="n">sign</span><span class="o">);</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
+<h1 id="最快解法">最快解法</h1>
+
+<p>看一下leetcode中用时最短的算法</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">myAtoi</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+	<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">sign</span> <span class="o">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">str</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">==</span> <span class="sc">' '</span><span class="o">)</span> <span class="o">{</span><span class="c1">//跳过空格</span>
+		<span class="n">i</span><span class="o">++;</span>
+	<span class="o">}</span>
+	<span class="k">if</span> <span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'+'</span> <span class="o">||</span> <span class="n">str</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'-'</span><span class="o">)</span> <span class="o">{</span><span class="c1">//判断正负号</span>
+		<span class="n">sign</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'+'</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+		<span class="n">i</span><span class="o">++;</span>
+	<span class="o">}</span>
+	<span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+		<span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">-</span> <span class="sc">'0'</span><span class="o">;</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">num</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">9</span><span class="o">)</span> <span class="k">break</span><span class="o">;</span>
+		<span class="c1">//判断是否溢出</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">r</span> <span class="o">&gt;</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span> <span class="o">/</span> <span class="mi">10</span> <span class="o">||</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span> <span class="o">/</span> <span class="mi">10</span> <span class="o">==</span> <span class="n">r</span> <span class="o">&amp;&amp;</span>
+		<span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">&lt;</span> <span class="n">num</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">return</span> <span class="n">sign</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">?</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span> <span class="o">:</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="n">r</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">r</span> <span class="o">+</span> <span class="n">num</span><span class="o">;</span>
+		<span class="n">i</span><span class="o">++;</span>
+	<span class="o">}</span>
+	<span class="k">return</span> <span class="n">sign</span> <span class="o">*</span> <span class="n">r</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
   	</div>
 	</div>
@@ -187,12 +190,12 @@
 <ul class="pager">
     
     <li class="previous">
-       <a href="/blog/leetcode-4-median-of-two-sorted-arrays.html">¤上一篇¤</a>
+       <a href="/blog/time-complexity-and-space-complexity.html">¤上一篇¤</a>
     </li>
     
     
     <li class="next">
-    	<a href="/blog/leetcode-6-zigzag-conversion.html">¤下一篇¤</a>
+    	<a href="/blog/leetcode-9-palindrome-number.html">¤下一篇¤</a>
     </li>
     
  </ul>

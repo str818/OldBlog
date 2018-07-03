@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="aexITLS38FdIRzwj25OVWxm87rpa9l-UV0URTyC9cTs" />
   <title>
-    【LeetCode】5_Longest Palindromic Substring
+    【LeetCode】4_Median Of Two Sorted Arrays
     
   </title>
   <link rel="stylesheet" href="../css/site.css">
@@ -63,11 +63,11 @@
 <div class="inner">
 <div class = "post-header">
   <h1>
-    【LeetCode】5_Longest Palindromic Substring
+    【LeetCode】4_Median Of Two Sorted Arrays
   </h1>
   <ul class="meta">
   	<i class="fa fa-calendar"></i>
-  	2018年04月09日
+  	2018年04月08日
 	&nbsp;&nbsp;
   	<i class="fa fa-archive"></i>
   	<a class="tag" href="http://localhost:5001/blog/categories.html#LeetCode">LeetCode</a>
@@ -79,10 +79,10 @@
   	    <i class="space"></i>
   	
 	&nbsp;&nbsp;
-  	<i class="space"></i> 字数:4253
+  	<i class="space"></i> 字数:4048
 	<i class="space"></i>
 	
-       <span id="/blog/leetcode-5-longest-palindromic-substring.html" class="leancloud_visitors" data-flag-title="【LeetCode】5_Longest Palindromic Substring">
+       <span id="/blog/leetcode-4-median-of-two-sorted-arrays.html" class="leancloud_visitors" data-flag-title="【LeetCode】4_Median Of Two Sorted Arrays">
         <span class="post-meta-divider">|</span>
         <span class="post-meta-item-text"> Hits:  </span>
         <span class="leancloud-visitors-count"></span>
@@ -102,81 +102,65 @@
           </div>
   	   <h1 id="问题描述">问题描述</h1>
 
-<p>给出字符串s，找出s中最长回文子字符串，假定字符串s的最大长度为1000。</p>
+<p>有两个有序数组num1与nums2，数组长度分别为m和n，找出两个有序数组的中位数，要求时间复杂度为O(log(m+n))。</p>
 
 <h3 id="输入">输入</h3>
+
 <blockquote>
-  <p>babad</p>
+  <p>nums1 = [1,3]
+nums2 = [2]</p>
 </blockquote>
 
 <blockquote>
-  <p>cbbd</p>
+  <p>nums1 = [1,2]
+nums2 = [3,4]</p>
 </blockquote>
 
 <h3 id="输出">输出</h3>
 
 <blockquote>
-  <p>bab(aba)</p>
+  <p>2.0</p>
 </blockquote>
 
 <blockquote>
-  <p>bb</p>
+  <p>2.5</p>
 </blockquote>
 
 <h1 id="我的解法">我的解法</h1>
 
-<p>首先想到的肯定是暴力求解喔，判断每一个子字符串是不是回文字符串，但是这样做时间复杂度高达$O(n^3)$，肯定是不能Accepted的。</p>
+<p>如果不要求时间复杂度的话肯定就是先排序再找中位数了，但是要求了时间复杂度为O(log(m+n))，那就只能使用二分法了，一个数组很容易二分，两个数组就需要
+有一点难度了。</p>
 
-<p>我的思路是，既然是找最长的，那就从最长的子字符串开始判断，一直找到最短的子字符串，在这过程中只要找到了一个回文字符串，那么这一字符串就是最长的回文字符串。</p>
+<p>首先，如果两个数组的总长度是偶数，那中位数就是中间两个数的均值；如果两个数组的总长度是计数，中位数就是中间的数。那么，可以将
+问题转化成；”如何找到两个数组中第k小的数”，有了第k小的数就能很容易的求中位数了。</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">longestPalindrome</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span> 
-	<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
-	<span class="c1">//长度为i的回文数</span>
-	<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span> <span class="o">{</span>
-		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span><span class="o">&lt;=</span><span class="n">n</span><span class="o">-</span><span class="n">i</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
-			<span class="k">if</span><span class="o">(</span><span class="n">isPalindromic</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">j</span><span class="o">,</span> <span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="o">)))</span> 
-				<span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">j</span><span class="o">,</span> <span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="o">);</span>
-		<span class="o">}</span>
-	<span class="o">}</span>
-	<span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+<p>可以使用递归的方法实现，getKth(A,m,B,n,k)。举个例子说明，A={1,3,5,7};B={2,4,6,8,10}，如果要求第7小的数，A中元素为4个，
+B中的元素个数为6；k/2=7/2=3，而A中的第3个数A[2]=5;B中的第3个数B[2]=6;而A[2]&lt;B[2];则A[0]、A[1]、A[2]中必然不可能有
+第7小的数。因为A[2]&lt;B[2]，所以比A[2]小的数最多可能是A[0]、A[1]、B[0]、B[1]这四个数，也就是说A[2]最多可能是第
+5小的数，这样能够把A[0]、A[1]、A[2]抹去，变为getKth(A’,m+3,B,0,7-3)，递归直到找到第k小的数。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">findMedianSortedArrays</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums1</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">nums2</span><span class="o">)</span> <span class="o">{</span>
+	<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">nums1</span><span class="o">.</span><span class="na">length</span> <span class="o">+</span>  <span class="n">nums2</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+	<span class="k">if</span><span class="o">(</span><span class="n">n</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="o">)</span>
+		<span class="k">return</span> <span class="o">(</span><span class="n">getKth</span><span class="o">(</span><span class="n">nums1</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="n">nums2</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="o">)</span> <span class="o">+</span> <span class="n">getKth</span><span class="o">(</span><span class="n">nums1</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="n">nums2</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="o">))/</span><span class="mf">2.0</span><span class="o">;</span>
+	<span class="k">else</span>
+		<span class="k">return</span> <span class="nf">getKth</span><span class="o">(</span><span class="n">nums1</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="n">nums2</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="o">);</span>
 <span class="o">}</span>
-<span class="c1">//判断是否是回文子串</span>
-<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isPalindromic</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-	<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
-	<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-		<span class="k">if</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">!=</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">))</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span> 
+<span class="c1">//找到第k小的数</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getKth</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">A</span><span class="o">,</span><span class="kt">int</span> <span class="n">m</span><span class="o">,</span><span class="kt">int</span><span class="o">[]</span> <span class="n">B</span><span class="o">,</span><span class="kt">int</span> <span class="n">n</span><span class="o">,</span><span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+	<span class="k">if</span><span class="o">(</span><span class="n">m</span><span class="o">&gt;=</span><span class="n">A</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="k">return</span> <span class="n">B</span><span class="o">[</span><span class="n">n</span><span class="o">+</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="o">];</span>
+	<span class="k">if</span><span class="o">(</span><span class="n">n</span><span class="o">&gt;=</span><span class="n">B</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="k">return</span> <span class="n">A</span><span class="o">[</span><span class="n">m</span><span class="o">+</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="o">];</span>
+	<span class="k">if</span><span class="o">(</span><span class="n">k</span><span class="o">==</span><span class="mi">1</span><span class="o">)</span> <span class="k">return</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">m</span><span class="o">],</span> <span class="n">B</span><span class="o">[</span><span class="n">n</span><span class="o">]);</span>
+	
+	<span class="kt">int</span> <span class="n">key1</span> <span class="o">=</span> <span class="n">m</span><span class="o">+</span><span class="n">k</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;=</span><span class="n">A</span><span class="o">.</span><span class="na">length</span><span class="o">?</span><span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">:</span><span class="n">A</span><span class="o">[</span><span class="n">m</span><span class="o">+</span><span class="n">k</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="o">];</span>
+	<span class="kt">int</span> <span class="n">key2</span> <span class="o">=</span> <span class="n">n</span><span class="o">+</span><span class="n">k</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;=</span><span class="n">B</span><span class="o">.</span><span class="na">length</span><span class="o">?</span><span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">:</span><span class="n">B</span><span class="o">[</span><span class="n">n</span><span class="o">+</span><span class="n">k</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="o">];</span>
+	<span class="k">if</span><span class="o">(</span><span class="n">key1</span><span class="o">&lt;</span><span class="n">key2</span><span class="o">)</span> <span class="o">{</span> 
+		<span class="k">return</span> <span class="nf">getKth</span><span class="o">(</span><span class="n">A</span><span class="o">,</span><span class="n">m</span><span class="o">+</span><span class="n">k</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span><span class="n">B</span><span class="o">,</span><span class="n">n</span><span class="o">,</span><span class="n">k</span><span class="o">-</span><span class="n">k</span><span class="o">/</span><span class="mi">2</span><span class="o">);</span>
+	<span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="nf">getKth</span><span class="o">(</span><span class="n">A</span><span class="o">,</span><span class="n">m</span><span class="o">,</span><span class="n">B</span><span class="o">,</span><span class="n">n</span><span class="o">+</span><span class="n">k</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span><span class="n">k</span><span class="o">-</span><span class="n">k</span><span class="o">/</span><span class="mi">2</span><span class="o">);</span>
 	<span class="o">}</span>
-	<span class="k">return</span> <span class="kc">true</span><span class="o">;</span>	
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h1 id="中心扩展法">中心扩展法</h1>
-
-<p>遍历字符串的每一个字符，如果存在回文子串，那么中心是某一字符(奇数)或两个字符的空隙(偶数)，然后分两种情况向两边扩展。</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">low</span><span class="o">;</span><span class="c1">//回文子串的起始位置</span>
-<span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">maxLen</span><span class="o">;</span><span class="c1">//回文子串的最大长度</span>
-<span class="kd">public</span> <span class="n">String</span> <span class="nf">longestPalindrome</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-	<span class="kt">int</span> <span class="n">len</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
-	<span class="k">if</span><span class="o">(</span><span class="n">len</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">)</span> <span class="k">return</span> <span class="n">s</span><span class="o">;</span>
-	<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
-		<span class="n">extendPalindrome</span><span class="o">(</span><span class="n">s</span><span class="o">,</span><span class="n">i</span><span class="o">,</span><span class="n">i</span><span class="o">);</span><span class="c1">//回文子串是奇数的情况</span>
-		<span class="n">extendPalindrome</span><span class="o">(</span><span class="n">s</span><span class="o">,</span><span class="n">i</span><span class="o">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">);</span><span class="c1">//回文子串是偶数的情况</span>
-	<span class="o">}</span>
-	<span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">low</span><span class="o">,</span> <span class="n">low</span><span class="o">+</span><span class="n">maxLen</span><span class="o">);</span>
-<span class="o">}</span>
-<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">extendPalindrome</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">,</span> <span class="kt">int</span> <span class="n">j</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
-	<span class="k">while</span><span class="o">(</span><span class="n">j</span><span class="o">&gt;=</span><span class="mi">0</span><span class="o">&amp;&amp;</span><span class="n">k</span><span class="o">&lt;</span><span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">()&amp;&amp;</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">)==</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">k</span><span class="o">)){</span>
-		<span class="n">j</span><span class="o">--;</span>
-		<span class="n">k</span><span class="o">++;</span>
-	<span class="o">}</span>
-	<span class="k">if</span><span class="o">(</span><span class="n">maxLen</span><span class="o">&lt;</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">){</span>
-		<span class="n">low</span><span class="o">=</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="o">;</span>
-		<span class="n">maxLen</span><span class="o">=</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-	<span class="o">}</span>    
 <span class="o">}</span>
 </code></pre></div></div>
-
 
   	</div>
 	</div>
@@ -187,12 +171,12 @@
 <ul class="pager">
     
     <li class="previous">
-       <a href="/blog/leetcode-4-median-of-two-sorted-arrays.html">¤上一篇¤</a>
+       <a href="/blog/leetcode-3-longest-substring.html">¤上一篇¤</a>
     </li>
     
     
     <li class="next">
-    	<a href="/blog/leetcode-6-zigzag-conversion.html">¤下一篇¤</a>
+    	<a href="/blog/leetcode-5-longest-palindromic-substring.html">¤下一篇¤</a>
     </li>
     
  </ul>

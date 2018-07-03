@@ -123,7 +123,8 @@ public static boolean isMatch(String s, String p) {
 							p.charAt(j-2) == '.') && dp[i-1][j];
 			}else {
 				//当前字符完全匹配时，传递dp[i-1][j-1]的真值
-				dp[i][j] = (p.charAt(j - 1) == '.' || s.charAt(i - 1) == p.charAt(j - 1)) && dp[i-1][j-1];
+				dp[i][j] = (p.charAt(j - 1) == '.' || 
+				          s.charAt(i - 1) == p.charAt(j - 1)) && dp[i-1][j-1];
 	}}}
 	return dp[n][m];
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cn">
+<html lang="en">
 
 
 
@@ -8,13 +8,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="aexITLS38FdIRzwj25OVWxm87rpa9l-UV0URTyC9cTs" />
   <title>
-    蒋迪的个人主页
+    【LeetCode】9_Palindrome Number
     
   </title>
   <link rel="stylesheet" href="../css/site.css">
   <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
   <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-  <meta name="description" content="学习测试中。。。" />
+  
   <link href="/blog/feed.xml" type="application/rss+xml" rel="alternate" title="Latest 10 blog posts (atom)" />
 
   
@@ -28,7 +28,7 @@
   <div class="header-container">
     <header class="inner">
       <nav>
-        <a class=" selected " href="/">关于</a>
+        <a class="" href="/">关于</a>
         <!--<a class="" href="/cn/project">项目</a>-->
         <!--<a href="/YongYuan_resume.pdf">简历</a>-->
         <a class="" href="/blog/">博客</a>
@@ -54,59 +54,188 @@
     <div class="clear"></div>
   </div>
 
-  <section  class="about-me inner">
+  <link rel="stylesheet" href="../css/blog.css">
+
+
+
+<div id="container">
+<article>
+<div class="inner">
+<div class = "post-header">
   <h1>
-    <!--<div class="book-me">
-      <a class="btn btn-lg" href="/contact">联系我</a>
-      <a class="btn btn-lg" href="/">英文</a>
-    </div>-->
-    <span class="hello">脚踏实地 志存高远</span>
+    【LeetCode】9_Palindrome Number
   </h1>
-
-  <blockquote>
-  <p>
-    在人生中，赢家并不是那些有优秀基因的人或是那最有天分的人，而是不挠不屈的人获胜，当他们跌倒了，他们总是不断地爬起来，一直做一直做。
-    那就是最后在人生中可以举手欢呼的人，那就是你们应该当的人。
-  </p>
-  </blockquote>
-  <p>
-    这是<a href="/"><span itemprop="name">蒋迪</span></a>的个人主页。
-  </p>
-  <p>
-    研究兴趣集中于<strong>计算机图形学</strong>、<strong>计算机视觉</strong>和<strong>三维人脸重建</strong>。
-  </p>
-  <p>
-    一名正在努力往上爬的蚂蚁小白。
-  </p>
-</section>
-
-<section class="inner">
-<div class="post-recents-in-index">
-<strong>最近写作</strong>
+  <ul class="meta">
+  	<i class="fa fa-calendar"></i>
+  	2018年04月19日
+	&nbsp;&nbsp;
+  	<i class="fa fa-archive"></i>
+  	<a class="tag" href="http://localhost:5001/blog/categories.html#LeetCode">LeetCode</a>
+  	<i class="space"></i>
+	&nbsp;&nbsp;
+  	<i class="fa fa-tags"></i>
+  	
+  	    <a class="tag" href="http://localhost:5001/tag/#LeetCode">LeetCode</a>
+  	    <i class="space"></i>
+  	
+	&nbsp;&nbsp;
+  	<i class="space"></i> 字数:2162
+	<i class="space"></i>
+	
+       <span id="/blog/leetcode-9-palindrome-number.html" class="leancloud_visitors" data-flag-title="【LeetCode】9_Palindrome Number">
+        <span class="post-meta-divider">|</span>
+        <span class="post-meta-item-text"> Hits:  </span>
+        <span class="leancloud-visitors-count"></span>
+       </span>
+	
+  </ul>
+  
 </div>
+</div>
+
+  <div class="post">
+        <div id="content">
+          <div class ="sidebox">
+              <div class ="sidebar">
+              <div class="toc"></div>
+              </div>
+          </div>
+  	   <h1 id="问题描述">问题描述</h1>
+
+<p>判断一个整数是否为回文数</p>
+
+<h3 id="输入">输入</h3>
+
 <blockquote>
-<ul>
-    
-    <li class="post-list-in-index">
-    <small class="post-list-date-in-index">29 Jun 2018</small><a  href="http://localhost:5001/blog/machine-learning-knn.html" title="K-邻近算法（KNN）">K-邻近算法（KNN）</a>
-    </li>
-    
-    <li class="post-list-in-index">
-    <small class="post-list-date-in-index">20 Apr 2018</small><a  href="http://localhost:5001/blog/leetcode-10-regular-expression-matching.html" title="【LeetCode】10_Regular Expression Matching">【LeetCode】10_Regular Expression Matching</a>
-    </li>
-    
-    <li class="post-list-in-index">
-    <small class="post-list-date-in-index">19 Apr 2018</small><a  href="http://localhost:5001/blog/leetcode-9-palindrome-number.html" title="【LeetCode】9_Palindrome Number">【LeetCode】9_Palindrome Number</a>
-    </li>
-    
-</ul>
+  <p>121</p>
 </blockquote>
-  <p>
-    <!--更多请查看我的<a href="http://localhost:5001/YongYuan_resume.pdf"><strong>简历</strong></a>。-->
-  </p>
+
+<blockquote>
+  <p>-121</p>
+</blockquote>
+
+<h3 id="输出">输出</h3>
+
+<blockquote>
+  <p>true</p>
+</blockquote>
+
+<blockquote>
+  <p>false</p>
+</blockquote>
+
+<h1 id="我的解法">我的解法</h1>
+
+<p>借助字符串比较前后对应字符是否相等</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isPalindrome</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+	<span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="s">""</span><span class="o">;</span>
+	<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+	<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">!=</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">))</span> <span class="o">{</span>
+			<span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+	<span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h1 id="解法一">解法一</h1>
+
+<p>将整型x反转成另一个整数，比较两个整数是否相等</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isPalindrome</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+	<span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="kt">int</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>
+	<span class="k">while</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+		<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">10</span><span class="o">;</span>
+		<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="mi">10</span><span class="o">;</span>
+		<span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">*</span><span class="mi">10</span> <span class="o">+</span> <span class="n">y</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">z</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+  	</div>
+	</div>
+</article>
+
+<!--翻页功能-->
+<section class="inner">
+<ul class="pager">
+    
+    <li class="previous">
+       <a href="/blog/leetcode-8-string-to-integer.html">¤上一篇¤</a>
+    </li>
+    
+    
+    <li class="next">
+    	<a href="/blog/leetcode-10-regular-expression-matching.html">¤下一篇¤</a>
+    </li>
+    
+ </ul>
 </section>
 
-<!--<a href="https://github.com/willard-yuan/willard-yuan.github.io"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>-->
+<!--评论功能-->
+<section class="comments inner duoshuo">
+<!-- Disqus Comment BEGIN -->
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'str818'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+<!-- Disqus Comment END -->
+
+</section>
+</div>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    <!--displayMath: [['$$','$$'], ['\[','\]']],-->
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+
 
   <!--<div class="separator"></div>-->
 
