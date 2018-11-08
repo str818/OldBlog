@@ -6,7 +6,7 @@ tags: Shader Unity
 ---
 
 　　图形处理器（Graphics Processing Unit,简称GPU）每秒能够进行数以亿次的计算，目前其已成为一种性能十分惊人的器件。通常，GPU主要用来承担实时图形渲染中的海量数学运算，然而，其潜在的计算能力也可用于处理与图形无关的任务。   
-　　CUDA与OpenCL早已能够基于GPU实现并行计算，而OpenGL与DirectX也分别于OpenGL4.3与DirectX11版本后能够通过计算着色器的方式基于GPU实现并行计算。从图中可以看到，计算着色器是独立与通常的渲染管线的。
+CUDA与OpenCL早已能够基于GPU实现并行计算，而OpenGL与DirectX也分别于OpenGL4.3与DirectX11版本后能够通过计算着色器的方式基于GPU实现并行计算。从图中可以看到，计算着色器是独立与通常的渲染管线的。
 
 >CUDA：NVIDIA推出的通用并行计算架构，该架构能够使用GPU解决复杂的计算问题。    
 >OpenCL：针对异构系统进行并行编程的一个全新API，能够利用GPU进行并行计算。
